@@ -1,0 +1,165 @@
+# design-tokens.yml — the studio theme's single source of truth.
+#
+# Every color, size, and space in the theme derives from this file. Nothing
+# in _sass/ hardcodes a hex value or a pixel measure — the build script
+# (scripts/build-tokens.sh) generates _sass/_tokens.scss from here, emitting
+# CSS custom properties and Sass variables. Regenerate after any edit and
+# commit the result; CI fails if the committed CSS is stale (--check).
+#
+# Design law (see docs/design.md): color is WAYFINDING ONLY.
+#   green  -> action      (things you can do: buttons, action links)
+#   blue   -> information (informational links, callouts)
+#   orange -> alert       (warnings — accent/border/banner, never body text)
+#   r/y/g  -> status      (health chips, badges)
+# The base is near-monochrome: one ground, one ink, one gray ramp.
+#
+# All color values below are tuned for WCAG 2.1 AA on the white ground.
+# The pairings under `contrast_checks:` are asserted by
+# scripts/check_contrast.py in CI — that is the machine proof of AA.
+
+meta:
+  name: bussetech-studio-theme-tokens
+  version: 0.1.0
+
+# ── Typography ────────────────────────────────────────────────────────────
+# Swiss grotesque discipline: a system/Helvetica stack, strong hierarchy.
+type:
+  family:
+    # System grotesque — no web-font fetch, no layout shift, no CSP exception.
+    sans: '-apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "Segoe UI", Roboto, sans-serif'
+    mono: '"SF Mono", "SFMono-Regular", ui-monospace, "Menlo", "Consolas", monospace'
+  weight:
+    regular: 400
+    medium: 500
+    bold: 700
+  # Modular scale (~1.2 minor third), rem. base = 1rem = 16px.
+  scale:
+    xs: 0.75rem     # 12px  fine print, chip labels
+    sm: 0.875rem    # 14px  secondary / meta
+    base: 1rem      # 16px  body
+    md: 1.125rem    # 18px  lead paragraphs
+    lg: 1.375rem    # 22px  h4 / card titles
+    xl: 1.75rem     # 28px  h3
+    '2xl': 2.25rem  # 36px  h2
+    '3xl': 3rem     # 48px  h1
+    '4xl': 4rem     # 64px  masthead / hero
+  leading:
+    tight: 1.15
+    snug: 1.3
+    normal: 1.6
+  tracking:
+    tight: '-0.02em'
+    normal: '0'
+    wide: '0.04em'   # small-caps labels, wayfinding eyebrows
+
+# ── Spacing ───────────────────────────────────────────────────────────────
+# 8px base rhythm; rem so it scales with root font-size.
+space:
+  '0': '0'
+  '1': 0.25rem   # 4
+  '2': 0.5rem    # 8
+  '3': 0.75rem   # 12
+  '4': 1rem      # 16
+  '5': 1.5rem    # 24
+  '6': 2rem      # 32
+  '7': 3rem      # 48
+  '8': 4rem      # 64
+  '9': 6rem      # 96
+
+# ── Gray ramp ─────────────────────────────────────────────────────────────
+# One neutral ramp. gray-500 is the lightest AA-safe text tone on white.
+gray:
+  '50': '#FAFAF8'    # off-white ground
+  '100': '#F2F2F0'
+  '200': '#E6E6E3'
+  '300': '#D9D9D6'   # hairline rules, card borders
+  '400': '#B8B8B4'
+  '500': '#6B6B6B'   # muted text (AA: 5.33:1)
+  '600': '#565656'   # secondary text (AA: 7.34:1)
+  '700': '#3D3D3D'
+  '800': '#262626'
+  '900': '#141414'
+
+# ── Color: ground, ink, and the wayfinding signals ────────────────────────
+color:
+  ground: '#FFFFFF'         # page background
+  ground_alt: '#FAFAF8'     # off-white panels
+  ink: '#1A1A1A'            # near-black body text (AA: 17.4:1)
+  ink_soft: '#565656'       # de-emphasized ink (== gray-600)
+
+  # GREEN = action. base doubles as link text (4.81:1) and button fill.
+  action:
+    base: '#00843D'
+    strong: '#006B31'       # hover/active/darker fill (6.67:1)
+    'on': '#FFFFFF'           # text/icon on an action fill
+    surface: '#E6F2EA'      # pale green wash (success surfaces)
+
+  # BLUE = information. base is link text and info-button fill.
+  info:
+    base: '#0055A4'         # 7.41:1 both directions
+    strong: '#004C93'
+    'on': '#FFFFFF'
+    surface: '#EAF1F8'      # pale blue callout wash
+
+  # ORANGE = alert. NEVER body text on white (brand orange is 2.96:1).
+  # Used as accent rule / left border / icon; `text` is the AA-safe tone
+  # for the rare orange word; `surface` is the banner wash (ink stays ink).
+  alert:
+    base: '#E87722'         # accent/border/icon only
+    text: '#A85410'         # AA-safe orange text on white (5.33:1)
+    'on': '#FFFFFF'
+    surface: '#FDF1E6'      # pale orange banner background
+
+  # STATUS = red / amber / green health. Each passes AA as text on white
+  # and as white-on-fill, so chips work filled or outlined.
+  status:
+    red: '#C8102E'          # 5.88:1
+    amber: '#9A5B00'        # 5.43:1
+    green: '#00843D'        # 4.81:1
+    'on': '#FFFFFF'
+
+# ── Structure ─────────────────────────────────────────────────────────────
+border:
+  hairline: 1px
+  rule: 2px
+  accent: 4px               # wayfinding left-borders on callouts/alerts
+radius:
+  none: '0'                 # Swiss default: square
+  sm: 2px
+  md: 4px
+  pill: 999px               # status chips
+
+# ── Layout ────────────────────────────────────────────────────────────────
+layout:
+  measure: 68ch             # max text line length (readability)
+  container: 72rem          # max content width
+  container_wide: 84rem
+breakpoint:
+  sm: 40rem    # 640
+  md: 48rem    # 768
+  lg: 64rem    # 1024
+  xl: 80rem    # 1280
+
+# ── WCAG AA proof ─────────────────────────────────────────────────────────
+# scripts/check_contrast.py asserts each pair meets `min` (AA: 4.5 normal
+# text, 3.0 large text / UI). fg/bg are dotted token paths or literal hex.
+contrast_checks:
+  - { name: 'body ink / white',        fg: color.ink,          bg: color.ground,        min: 4.5 }
+  - { name: 'body ink / off-white',    fg: color.ink,          bg: color.ground_alt,    min: 4.5 }
+  - { name: 'muted / white',           fg: gray.500,           bg: color.ground,        min: 4.5 }
+  - { name: 'secondary / white',       fg: gray.600,           bg: color.ground,        min: 4.5 }
+  - { name: 'action link / white',     fg: color.action.base,  bg: color.ground,        min: 4.5 }
+  - { name: 'action label / fill',     fg: color.action.on,    bg: color.action.base,   min: 4.5 }
+  - { name: 'action label / strong',   fg: color.action.on,    bg: color.action.strong, min: 4.5 }
+  - { name: 'action / green surface',  fg: color.ink,          bg: color.action.surface, min: 4.5 }
+  - { name: 'info link / white',       fg: color.info.base,    bg: color.ground,        min: 4.5 }
+  - { name: 'info label / fill',       fg: color.info.on,      bg: color.info.base,     min: 4.5 }
+  - { name: 'info body / blue surface', fg: color.ink,         bg: color.info.surface,  min: 4.5 }
+  - { name: 'alert text / white',      fg: color.alert.text,   bg: color.ground,        min: 4.5 }
+  - { name: 'alert body / orange surface', fg: color.ink,      bg: color.alert.surface, min: 4.5 }
+  - { name: 'status red / white',      fg: color.status.red,   bg: color.ground,        min: 4.5 }
+  - { name: 'status red label / fill', fg: color.status.on,    bg: color.status.red,    min: 4.5 }
+  - { name: 'status amber / white',    fg: color.status.amber, bg: color.ground,        min: 4.5 }
+  - { name: 'status amber label / fill', fg: color.status.on,  bg: color.status.amber,  min: 4.5 }
+  - { name: 'status green / white',    fg: color.status.green, bg: color.ground,        min: 4.5 }
+  - { name: 'ink / gray-100 panel',    fg: color.ink,          bg: gray.100,            min: 4.5 }

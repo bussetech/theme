@@ -1,0 +1,11 @@
+# Demo data for the components page — not shipped to consumers.
+- title: DNS steward reconciled the zone
+  url: "https://example.com/dc/"
+  date: 2026-07-04
+  source: gn_dns_steward · platform
+  summary: Adopted four pre-existing records, created one CNAME, deleted nothing.
+- title: New dataset published — Q2 filings
+  url: "https://example.com/dc/"
+  date: 2026-07-01
+  source: dc · project
+  summary: 1,204 rows added from public regulatory filings.

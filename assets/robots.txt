@@ -1,0 +1,12 @@
+---
+permalink: /robots.txt
+---
+{%- if site.studio.visibility == "private" -%}
+User-agent: *
+Disallow: /
+{%- else -%}
+User-agent: *
+Allow: /
+
+Sitemap: {{ '/sitemap.xml' | absolute_url }}
+{%- endif -%}

@@ -1,0 +1,23 @@
+---
+permalink: /feed.json
+# JSON Feed 1.1 — the studio's machine-readable feed convention, published
+# alongside RSS. Portal (prompt 07) aggregates these across project sites.
+---
+{
+  "version": "https://jsonfeed.org/version/1.1",
+  "title": {{ site.title | default: site.studio.logotype | jsonify }},
+  "home_page_url": {{ '/' | absolute_url | jsonify }},
+  "feed_url": {{ '/feed.json' | absolute_url | jsonify }},
+  "description": {{ site.description | default: "" | jsonify }},
+  "items": [
+    {%- for post in site.posts limit: 20 -%}
+    {
+      "id": {{ post.url | absolute_url | jsonify }},
+      "url": {{ post.url | absolute_url | jsonify }},
+      "title": {{ post.title | jsonify }},
+      "date_published": "{{ post.date | date_to_xmlschema }}",
+      "content_text": {{ post.excerpt | default: post.content | strip_html | strip_newlines | truncate: 400 | jsonify }}
+    }{%- unless forloop.last %},{% endunless -%}
+    {%- endfor -%}
+  ]
+}

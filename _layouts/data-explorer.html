@@ -1,0 +1,50 @@
+---
+layout: default
+---
+{%- comment -%}
+  data-explorer — STUB layout for project sites that browse a text-based
+  data store (JSON/YAML/CSV/md). It renders a wayfinding header, an
+  optional filter form (progressive enhancement — works as a plain GET
+  form with no JS), and a table from `page.rows` (list of objects) with
+  columns from `page.columns`. A project repo overrides/extends this;
+  the theme only guarantees the shell, the grid, and the wayfinding.
+{%- endcomment -%}
+{% include breadcrumb.html %}
+<div class="stack">
+  <header class="page-header">
+    {%- if page.eyebrow %}<p class="eyebrow">{{ page.eyebrow }}</p>{% endif -%}
+    <h1 class="page-header__title">{{ page.title }}</h1>
+    {%- if page.description %}<p class="page-header__desc">{{ page.description }}</p>{% endif -%}
+  </header>
+
+  {%- if page.filterable -%}
+  <form class="data-explorer__filter" method="get" role="search">
+    <label class="visually-hidden" for="q">Filter</label>
+    <input id="q" name="q" type="search" placeholder="Filter…"
+           value="{{ page.query }}" style="padding: var(--space-2) var(--space-3); border: var(--border-hairline) solid var(--gray-300); border-radius: var(--radius-sm); min-width: 16rem;">
+    {% include button.html label="Filter" variant="action" %}
+  </form>
+  {%- endif -%}
+
+  {%- if page.columns and page.rows -%}
+  <div style="overflow-x: auto;">
+    <table>
+      <thead>
+        <tr>{%- for col in page.columns -%}<th scope="col">{{ col.label | default: col }}</th>{%- endfor -%}</tr>
+      </thead>
+      <tbody>
+        {%- for row in page.rows -%}
+        <tr>
+          {%- for col in page.columns -%}
+          {%- assign key = col.key | default: col -%}
+          <td>{{ row[key] }}</td>
+          {%- endfor -%}
+        </tr>
+        {%- endfor -%}
+      </tbody>
+    </table>
+  </div>
+  {%- else -%}
+  {{ content }}
+  {%- endif -%}
+</div>

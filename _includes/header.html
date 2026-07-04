@@ -1,0 +1,17 @@
+<header class="masthead">
+  <div class="container masthead__inner">
+    {% include logotype.html link="/" %}
+    <nav class="nav" aria-label="Primary">
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-list">Menu</button>
+      <ul class="nav__list" id="nav-list">
+        {%- assign _nav = site.studio.nav | default: site.data.navigation -%}
+        {%- for item in _nav -%}
+        <li>
+          <a class="nav__link" href="{{ item.url | relative_url }}"
+             {% if page.url == item.url %}aria-current="page"{% endif %}>{{ item.title }}</a>
+        </li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+  </div>
+</header>

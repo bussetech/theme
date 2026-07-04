@@ -1,0 +1,13 @@
+{%- comment -%}
+  Feed-item card. Params: an `item` object with:
+    title, url, date (ISO or displayable), source, summary.
+{%- endcomment -%}
+{%- assign i = include.item -%}
+<article class="feed-item">
+  {%- if i.date -%}<time class="feed-item__date" datetime="{{ i.date }}">{{ i.date | date: "%Y-%m-%d" }}</time>{%- endif -%}
+  <h3 class="feed-item__title">
+    {%- if i.url -%}<a href="{{ i.url }}">{{ i.title }}</a>{%- else -%}{{ i.title }}{%- endif -%}
+  </h3>
+  {%- if i.summary %}<p class="card__desc">{{ i.summary }}</p>{% endif -%}
+  {%- if i.source %}<span class="feed-item__source">{{ i.source }}</span>{% endif -%}
+</article>

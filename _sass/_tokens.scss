@@ -1,0 +1,172 @@
+// _tokens.scss — GENERATED from tokens/design-tokens.yml.
+// Do not edit by hand. Run scripts/build-tokens.sh after changing the
+// token source; CI (--check) fails if this file is stale.
+
+:root {
+  /* type */
+  --type-family-sans: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, "Segoe UI", Roboto, sans-serif;
+  --type-family-mono: "SF Mono", "SFMono-Regular", ui-monospace, "Menlo", "Consolas", monospace;
+  --type-weight-regular: 400;
+  --type-weight-medium: 500;
+  --type-weight-bold: 700;
+  --type-scale-xs: 0.75rem;
+  --type-scale-sm: 0.875rem;
+  --type-scale-base: 1rem;
+  --type-scale-md: 1.125rem;
+  --type-scale-lg: 1.375rem;
+  --type-scale-xl: 1.75rem;
+  --type-scale-2xl: 2.25rem;
+  --type-scale-3xl: 3rem;
+  --type-scale-4xl: 4rem;
+  --type-leading-tight: 1.15;
+  --type-leading-snug: 1.3;
+  --type-leading-normal: 1.6;
+  --type-tracking-tight: -0.02em;
+  --type-tracking-normal: 0;
+  --type-tracking-wide: 0.04em;
+
+  /* space */
+  --space-0: 0;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+
+  /* gray */
+  --gray-50: #FAFAF8;
+  --gray-100: #F2F2F0;
+  --gray-200: #E6E6E3;
+  --gray-300: #D9D9D6;
+  --gray-400: #B8B8B4;
+  --gray-500: #6B6B6B;
+  --gray-600: #565656;
+  --gray-700: #3D3D3D;
+  --gray-800: #262626;
+  --gray-900: #141414;
+
+  /* color */
+  --color-ground: #FFFFFF;
+  --color-ground_alt: #FAFAF8;
+  --color-ink: #1A1A1A;
+  --color-ink_soft: #565656;
+  --color-action-base: #00843D;
+  --color-action-strong: #006B31;
+  --color-action-on: #FFFFFF;
+  --color-action-surface: #E6F2EA;
+  --color-info-base: #0055A4;
+  --color-info-strong: #004C93;
+  --color-info-on: #FFFFFF;
+  --color-info-surface: #EAF1F8;
+  --color-alert-base: #E87722;
+  --color-alert-text: #A85410;
+  --color-alert-on: #FFFFFF;
+  --color-alert-surface: #FDF1E6;
+  --color-status-red: #C8102E;
+  --color-status-amber: #9A5B00;
+  --color-status-green: #00843D;
+  --color-status-on: #FFFFFF;
+
+  /* border */
+  --border-hairline: 1px;
+  --border-rule: 2px;
+  --border-accent: 4px;
+
+  /* radius */
+  --radius-none: 0;
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-pill: 999px;
+
+  /* layout */
+  --layout-measure: 68ch;
+  --layout-container: 72rem;
+  --layout-container_wide: 84rem;
+
+  /* breakpoint */
+  --bp-sm: 40rem;
+  --bp-md: 48rem;
+  --bp-lg: 64rem;
+  --bp-xl: 80rem;
+
+}
+
+// Sass aliases → the custom properties above.
+$type-family-sans: var(--type-family-sans);
+$type-family-mono: var(--type-family-mono);
+$type-weight-regular: var(--type-weight-regular);
+$type-weight-medium: var(--type-weight-medium);
+$type-weight-bold: var(--type-weight-bold);
+$type-scale-xs: var(--type-scale-xs);
+$type-scale-sm: var(--type-scale-sm);
+$type-scale-base: var(--type-scale-base);
+$type-scale-md: var(--type-scale-md);
+$type-scale-lg: var(--type-scale-lg);
+$type-scale-xl: var(--type-scale-xl);
+$type-scale-2xl: var(--type-scale-2xl);
+$type-scale-3xl: var(--type-scale-3xl);
+$type-scale-4xl: var(--type-scale-4xl);
+$type-leading-tight: var(--type-leading-tight);
+$type-leading-snug: var(--type-leading-snug);
+$type-leading-normal: var(--type-leading-normal);
+$type-tracking-tight: var(--type-tracking-tight);
+$type-tracking-normal: var(--type-tracking-normal);
+$type-tracking-wide: var(--type-tracking-wide);
+$space-0: var(--space-0);
+$space-1: var(--space-1);
+$space-2: var(--space-2);
+$space-3: var(--space-3);
+$space-4: var(--space-4);
+$space-5: var(--space-5);
+$space-6: var(--space-6);
+$space-7: var(--space-7);
+$space-8: var(--space-8);
+$space-9: var(--space-9);
+$gray-50: var(--gray-50);
+$gray-100: var(--gray-100);
+$gray-200: var(--gray-200);
+$gray-300: var(--gray-300);
+$gray-400: var(--gray-400);
+$gray-500: var(--gray-500);
+$gray-600: var(--gray-600);
+$gray-700: var(--gray-700);
+$gray-800: var(--gray-800);
+$gray-900: var(--gray-900);
+$color-ground: var(--color-ground);
+$color-ground_alt: var(--color-ground_alt);
+$color-ink: var(--color-ink);
+$color-ink_soft: var(--color-ink_soft);
+$color-action-base: var(--color-action-base);
+$color-action-strong: var(--color-action-strong);
+$color-action-on: var(--color-action-on);
+$color-action-surface: var(--color-action-surface);
+$color-info-base: var(--color-info-base);
+$color-info-strong: var(--color-info-strong);
+$color-info-on: var(--color-info-on);
+$color-info-surface: var(--color-info-surface);
+$color-alert-base: var(--color-alert-base);
+$color-alert-text: var(--color-alert-text);
+$color-alert-on: var(--color-alert-on);
+$color-alert-surface: var(--color-alert-surface);
+$color-status-red: var(--color-status-red);
+$color-status-amber: var(--color-status-amber);
+$color-status-green: var(--color-status-green);
+$color-status-on: var(--color-status-on);
+$border-hairline: var(--border-hairline);
+$border-rule: var(--border-rule);
+$border-accent: var(--border-accent);
+$radius-none: var(--radius-none);
+$radius-sm: var(--radius-sm);
+$radius-md: var(--radius-md);
+$radius-pill: var(--radius-pill);
+$layout-measure: var(--layout-measure);
+$layout-container: var(--layout-container);
+$layout-container_wide: var(--layout-container_wide);
+$bp-sm: var(--bp-sm);
+$bp-md: var(--bp-md);
+$bp-lg: var(--bp-lg);
+$bp-xl: var(--bp-xl);

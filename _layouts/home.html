@@ -1,0 +1,24 @@
+---
+layout: default
+---
+<div class="stack">
+  <header class="page-header">
+    {%- if page.eyebrow %}<p class="eyebrow">{{ page.eyebrow }}</p>{% endif -%}
+    <h1 class="page-header__title">{{ page.title | default: site.title }}</h1>
+    {%- if page.description %}<p class="page-header__desc">{{ page.description }}</p>{% endif -%}
+  </header>
+
+  {{ content }}
+
+  {%- comment -%} Optional recent-posts strip when the site has a blog. {%- endcomment -%}
+  {%- if site.posts and site.posts.size > 0 and page.show_posts != false -%}
+  <section>
+    <h2>Latest</h2>
+    <ul class="post-list">
+      {%- for post in site.posts limit: 5 -%}
+      {% include feed-item.html item=post %}
+      {%- endfor -%}
+    </ul>
+  </section>
+  {%- endif -%}
+</div>

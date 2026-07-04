@@ -1,0 +1,10 @@
+{%- comment -%}
+  Status chip. Params: status ("ok"|"warn"|"error"), label, filled (bool).
+  Color is wayfinding only — the dot carries the red/amber/green signal.
+{%- endcomment -%}
+{%- assign _map = "ok:chip--ok,warn:chip--warn,error:chip--error" | split: "," -%}
+{%- assign _mod = "chip--ok" -%}
+{%- if include.status == "warn" %}{% assign _mod = "chip--warn" %}{% endif -%}
+{%- if include.status == "error" %}{% assign _mod = "chip--error" %}{% endif -%}
+<span class="chip {{ _mod }}{% if include.filled %} chip--filled{% endif %}">
+  <span class="chip__dot" aria-hidden="true"></span>{{ include.label | default: include.status }}</span>

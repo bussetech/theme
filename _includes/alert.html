@@ -1,0 +1,10 @@
+{%- comment -%}
+  Alert banner (orange = warning). Params: label (default "Alert"),
+  body (optional; else use the block via include content). Orange is the
+  accent border only — body text stays ink for AA.
+{%- endcomment -%}
+<div class="alert" role="note">
+  <p class="alert__label">{{ include.label | default: "Alert" }}</p>
+  {%- if include.body %}<p>{{ include.body }}</p>{% endif -%}
+  {{ include.content }}
+</div>

@@ -1,0 +1,132 @@
+// _base.scss — element defaults: typography, links, rules, code, tables.
+// Colors and measures come only from tokens (_tokens.scss). No literals.
+
+html {
+  font-family: var(--type-family-sans);
+  font-size: 100%;
+  line-height: var(--type-leading-normal);
+  color: var(--color-ink);
+  background: var(--color-ground);
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-size: var(--type-scale-base);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+// ── Headings: strong Swiss hierarchy, tight tracking on the big ones ───────
+h1, h2, h3, h4, h5, h6 {
+  font-weight: var(--type-weight-bold);
+  line-height: var(--type-leading-tight);
+  color: var(--color-ink);
+  margin-block: var(--space-6) var(--space-3);
+}
+h1 { font-size: var(--type-scale-3xl); letter-spacing: var(--type-tracking-tight); }
+h2 { font-size: var(--type-scale-2xl); letter-spacing: var(--type-tracking-tight); }
+h3 { font-size: var(--type-scale-xl); }
+h4 { font-size: var(--type-scale-lg); }
+h5 { font-size: var(--type-scale-md); }
+h6 {
+  font-size: var(--type-scale-sm);
+  text-transform: uppercase;
+  letter-spacing: var(--type-tracking-wide);
+  color: var(--color-ink-soft);
+}
+:where(h1, h2, h3, h4, h5, h6):first-child { margin-block-start: 0; }
+
+p { margin-block: 0 var(--space-4); max-width: var(--layout-measure); }
+.lead { font-size: var(--type-scale-md); color: var(--color-ink-soft); }
+
+// ── Links: default is action-green (things you can do). Informational
+// links opt into blue via .link-info. Color is wayfinding, so underlines
+// carry the "this is a link" signal independent of hue. ───────────────────
+a {
+  color: var(--color-action-base);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  text-decoration-thickness: 1px;
+}
+a:hover { color: var(--color-action-strong); text-decoration-thickness: 2px; }
+a.link-info { color: var(--color-info-base); }
+a.link-info:hover { color: var(--color-info-strong); }
+
+// ── Focus: always visible, wayfinding-blue ring ───────────────────────────
+:focus-visible {
+  outline: var(--border-rule) solid var(--color-info-base);
+  outline-offset: 2px;
+}
+
+strong, b { font-weight: var(--type-weight-bold); }
+
+small { font-size: var(--type-scale-sm); color: var(--color-ink-soft); }
+
+hr {
+  border: 0;
+  border-top: var(--border-hairline) solid var(--gray-300);
+  margin-block: var(--space-6);
+}
+
+ul, ol { margin-block: 0 var(--space-4); padding-inline-start: var(--space-5); max-width: var(--layout-measure); }
+li { margin-block: var(--space-1); }
+
+blockquote {
+  margin-block: var(--space-5);
+  padding-inline-start: var(--space-4);
+  border-inline-start: var(--border-accent) solid var(--gray-300);
+  color: var(--color-ink-soft);
+}
+
+// ── Code ──────────────────────────────────────────────────────────────────
+code, kbd, pre, samp { font-family: var(--type-family-mono); font-size: 0.9em; }
+code {
+  background: var(--gray-100);
+  padding: 0.1em 0.35em;
+  border-radius: var(--radius-sm);
+}
+pre {
+  background: var(--gray-100);
+  border: var(--border-hairline) solid var(--gray-300);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  overflow-x: auto;
+  margin-block: var(--space-5);
+}
+pre code { background: none; padding: 0; }
+
+// ── Tables ──────────────────────────────────────────────────────────────
+table { margin-block: var(--space-5); font-size: var(--type-scale-sm); }
+th, td {
+  text-align: start;
+  padding: var(--space-2) var(--space-3);
+  border-bottom: var(--border-hairline) solid var(--gray-300);
+}
+th {
+  font-weight: var(--type-weight-bold);
+  border-bottom-width: var(--border-rule);
+  border-bottom-color: var(--color-ink);
+}
+
+// ── Utility: small-caps wayfinding eyebrow ────────────────────────────────
+.eyebrow {
+  font-size: var(--type-scale-xs);
+  font-weight: var(--type-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--type-tracking-wide);
+  color: var(--color-ink-soft);
+}
+
+.visually-hidden {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+.skip-link {
+  position: absolute; left: var(--space-2); top: -3rem;
+  background: var(--color-ink); color: var(--color-ground);
+  padding: var(--space-2) var(--space-4); z-index: 100;
+  transition: top 0.15s ease;
+}
+.skip-link:focus { top: var(--space-2); }

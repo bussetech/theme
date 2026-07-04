@@ -1,0 +1,21 @@
+{%- comment -%}
+  Gnome card. Params: a `gnome` object with:
+    display_name, var (the gn_* variable name), level ("platform"|"project"),
+    status ("ok"|"warn"|"error"), status_label, home (home repo), url.
+{%- endcomment -%}
+{%- assign g = include.gnome -%}
+<article class="card gnome-card">
+  <h3 class="card__title">
+    {%- if g.url -%}<a href="{{ g.url }}">{{ g.display_name }}</a>{%- else -%}{{ g.display_name }}{%- endif -%}
+  </h3>
+  <p class="gnome-card__var">{{ g.var }}</p>
+  <dl class="card__meta">
+    <div><dt class="visually-hidden">Level</dt><dd class="gnome-card__level">{{ g.level }}</dd></div>
+    {%- if g.status -%}
+    <div><dt class="visually-hidden">Status</dt><dd>{% include status-chip.html status=g.status label=g.status_label %}</dd></div>
+    {%- endif -%}
+    {%- if g.home -%}
+    <div><dt>Home</dt><dd>{{ g.home }}</dd></div>
+    {%- endif -%}
+  </dl>
+</article>

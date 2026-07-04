@@ -1,0 +1,8 @@
+{%- comment -%}
+  Action button (green) / info button (blue) / ghost. Params:
+    label (required), url, variant ("action"|"info"|"ghost", default action).
+{%- endcomment -%}
+{%- assign _cls = "btn" -%}
+{%- if include.variant == "info" %}{% assign _cls = "btn btn--info" %}{% endif -%}
+{%- if include.variant == "ghost" %}{% assign _cls = "btn btn--ghost" %}{% endif -%}
+<a class="{{ _cls }}" href="{{ include.url | default: '#' | relative_url }}">{{ include.label }}</a>

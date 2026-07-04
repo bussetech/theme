@@ -1,0 +1,9 @@
+{%- comment -%}
+  Info callout (blue = information). Params: label (default "Note"),
+  body (optional).
+{%- endcomment -%}
+<div class="callout" role="note">
+  <p class="callout__label">{{ include.label | default: "Note" }}</p>
+  {%- if include.body %}<p>{{ include.body }}</p>{% endif -%}
+  {{ include.content }}
+</div>

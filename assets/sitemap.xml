@@ -1,0 +1,30 @@
+---
+permalink: /sitemap.xml
+# Ships via the theme's assets/ (the only tree remote_theme propagates) and
+# relocates to site root through permalink — so every consuming site gets a
+# sitemap with no per-site file. Hand-rolled; no plugin.
+---
+<?xml version="1.0" encoding="UTF-8"?>
+{%- if site.studio.visibility == "private" -%}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"></urlset>
+{%- else -%}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- assign _pages = site.html_pages | where_exp: "p", "p.sitemap != false" -%}
+{%- for page in _pages -%}
+{%- unless page.url contains "404" -%}
+  <url>
+    <loc>{{ page.url | absolute_url | xml_escape }}</loc>
+    {%- if page.last_modified_at or page.date %}
+    <lastmod>{{ page.last_modified_at | default: page.date | date_to_xmlschema }}</lastmod>
+    {%- endif %}
+  </url>
+{%- endunless -%}
+{%- endfor -%}
+{%- for post in site.posts -%}
+  <url>
+    <loc>{{ post.url | absolute_url | xml_escape }}</loc>
+    <lastmod>{{ post.last_modified_at | default: post.date | date_to_xmlschema }}</lastmod>
+  </url>
+{%- endfor -%}
+</urlset>
+{%- endif -%}

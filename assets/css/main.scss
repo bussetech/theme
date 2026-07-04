@@ -1,0 +1,11 @@
+---
+# Front matter (empty) tells Jekyll to process this file through Sass.
+# Consuming sites receive this compiled to /assets/css/main.css via
+# remote_theme (assets/ is propagated). Uses @use (Dart Sass modules) so
+# consumer builds stay warning-free through Dart Sass 3.
+---
+@use "tokens";      // GENERATED from tokens/design-tokens.yml
+@use "reset";
+@use "base";
+@use "layout";
+@use "components";

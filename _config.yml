@@ -1,0 +1,51 @@
+# _config.yml — builds the theme's OWN demo/documentation site (the visual
+# regression surface for prompt 06). This config is NOT shipped to consumers:
+# remote_theme propagates only _layouts/_includes/_sass/assets. The `studio:`
+# block here is exactly the shape a consuming site provides (the factory,
+# prompt 08, injects it from platform.yml).
+
+title: Studio Theme
+description: The shared design system every site in the studio uses — one theme, consumed as a remote_theme.
+lang: en
+
+# For the demo build. A published studio site sets its own site URL.
+url: "https://example.com"
+baseurl: ""
+
+# The studio contract the theme reads. Org/domain/branding come from here,
+# never hardcoded in theme source.
+studio:
+  logotype: "bussetech | software studio"
+  org: bussetech
+  domain: bussetech.com
+  visibility: public        # public | private | private-published
+  is_portal: false          # the demo shows the "a … project" attribution
+  theme_color: "#FFFFFF"    # mobile browser-chrome hint (== token color.ground)
+  analytics_beacon: ""      # empty → no beacon rendered (see _includes/analytics.html)
+  footer_note: "Theme v0.1.0 · MIT"
+  nav:
+    - title: Home
+      url: /
+    - title: Components
+      url: /components/
+    - title: Wayfinding
+      url: /wayfinding/
+    - title: Design
+      url: /design/
+
+# Build settings
+markdown: kramdown
+permalink: /blog/:title/
+sass:
+  style: compressed
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - CLAUDE.md
+  - LICENSE
+  - scripts/
+  - tokens/
+  - vendor/
+  - .github/

@@ -1,0 +1,12 @@
+{%- comment -%}
+  Cloudflare Web Analytics beacon. Renders ONLY when the site config
+  carries a token (`studio.analytics_beacon`, minted per-host by the DNS
+  steward — EPIC1-04 — and written into the repo's platform.yml entry;
+  the factory injects it here). Off by default: no token, no beacon, no
+  markup. Cookieless, so no consent banner needed. The token is not a
+  secret — it appears in served HTML by design.
+{%- endcomment -%}
+{%- assign _beacon = site.studio.analytics_beacon -%}
+{%- if _beacon and _beacon != "" -%}
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "{{ _beacon }}"}'></script>
+{%- endif -%}

@@ -1,0 +1,20 @@
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    {%- comment -%}
+      Attribution mark: "a <org> | software studio project". Rendered from
+      the same config-driven logotype — no hardcoded org. The apex/portal
+      site sets `studio.is_portal: true` to suppress the "a … project"
+      framing (the portal is the studio, not a project of it).
+    {%- endcomment -%}
+    <p class="attribution">
+      {%- if site.studio.is_portal -%}
+      {% include logotype.html size="sm" %}
+      {%- else -%}
+      a {% include logotype.html size="sm" %} project
+      {%- endif -%}
+    </p>
+    <p class="attribution">
+      {%- if site.studio.footer_note %}{{ site.studio.footer_note }}{% endif -%}
+    </p>
+  </div>
+</footer>

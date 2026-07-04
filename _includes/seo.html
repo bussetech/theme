@@ -1,0 +1,35 @@
+{%- comment -%}
+  Hand-rolled discoverability head: title, description, canonical, Open
+  Graph, Twitter card, JSON Feed + RSS autodiscovery. No external plugin,
+  no external asset — safe inside the studio's CSP posture.
+
+  Honors the ADR-0006 leak rule: a `private-published` site (config
+  `studio.visibility: private-published`) must not expose repo/source
+  links. This include never emits a repo URL; layouts must not either.
+{%- endcomment -%}
+{%- assign _title = page.title | default: site.title -%}
+{%- if page.title and site.title and page.title != site.title -%}
+  {%- assign _title = page.title | append: " · " | append: site.title -%}
+{%- endif -%}
+{%- assign _desc = page.description | default: page.excerpt | default: site.description | strip_html | strip_newlines | truncate: 200 -%}
+{%- assign _url = page.url | absolute_url -%}
+{%- assign _img = page.image | default: site.studio.default_image -%}
+
+<title>{{ _title }}</title>
+<meta name="description" content="{{ _desc | escape }}">
+<link rel="canonical" href="{{ _url }}">
+
+<meta property="og:type" content="{% if page.layout == 'post' %}article{% else %}website{% endif %}">
+<meta property="og:title" content="{{ _title | escape }}">
+<meta property="og:description" content="{{ _desc | escape }}">
+<meta property="og:url" content="{{ _url }}">
+{%- if site.title %}<meta property="og:site_name" content="{{ site.title | escape }}">{% endif %}
+{%- if _img %}<meta property="og:image" content="{{ _img | absolute_url }}">{% endif %}
+<meta name="twitter:card" content="{% if _img %}summary_large_image{% else %}summary{% endif %}">
+<meta name="twitter:title" content="{{ _title | escape }}">
+<meta name="twitter:description" content="{{ _desc | escape }}">
+{%- if _img %}<meta name="twitter:image" content="{{ _img | absolute_url }}">{% endif %}
+
+{%- comment -%} Feed autodiscovery — both conventions the studio publishes. {%- endcomment -%}
+<link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href="{{ '/feed.xml' | absolute_url }}">
+<link rel="alternate" type="application/feed+json" title="{{ site.title | escape }}" href="{{ '/feed.json' | absolute_url }}">

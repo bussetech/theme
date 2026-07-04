@@ -1,0 +1,20 @@
+# Demo data for the components page — not shipped to consumers.
+- name: Data Center Tracker
+  url: "https://example.com/dc/"
+  description: Research site tracking data-center build-outs from public filings.
+  status: ok
+  status_label: healthy
+  visibility: public
+  subdomain: dc.example.com
+- name: Twilio Demo
+  url: "https://example.com/twilio-demo/"
+  description: A worked reference integration, rebuilt weekly.
+  status: warn
+  status_label: stale build
+  visibility: private-published
+  subdomain: twilio-demo.example.com
+- name: Internal Ledger
+  description: Private research dataset; outputs not yet published.
+  status: error
+  status_label: build failing
+  visibility: private

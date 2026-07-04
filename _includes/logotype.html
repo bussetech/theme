@@ -1,0 +1,25 @@
+{%- comment -%}
+  Studio logotype — text-only, rendered entirely from config so the theme
+  ships with zero hardcoded org name. Reads `site.studio.logotype`
+  (pattern "<org> | software studio"); splits on the pipe to weight the
+  org name bold and the descriptor regular.
+
+  Params (via include):
+    size   — "lg" | "sm" (optional, default base)
+    link   — url to wrap the mark in (optional)
+    tag    — wrapping element when not a link (default "span")
+{%- endcomment -%}
+{%- assign _lt = site.studio.logotype -%}
+{%- if _lt == nil or _lt == "" -%}{%- assign _lt = "studio | software studio" -%}{%- endif -%}
+{%- assign _parts = _lt | split: "|" -%}
+{%- assign _org = _parts[0] | strip -%}
+{%- assign _desc = _parts[1] | strip -%}
+{%- assign _cls = "logotype" -%}
+{%- if include.size == "lg" -%}{%- assign _cls = "logotype logotype--lg" -%}{%- endif -%}
+{%- if include.size == "sm" -%}{%- assign _cls = "logotype logotype--sm" -%}{%- endif -%}
+{%- capture _inner -%}<span class="logotype__org">{{ _org }}</span><span class="logotype__pipe" aria-hidden="true">|</span><span class="logotype__descriptor">{{ _desc }}</span>{%- endcapture -%}
+{%- if include.link -%}
+<a class="{{ _cls }}" href="{{ include.link | relative_url }}" aria-label="{{ _lt }}">{{ _inner }}</a>
+{%- else -%}
+<{{ include.tag | default: "span" }} class="{{ _cls }}" aria-label="{{ _lt }}">{{ _inner }}</{{ include.tag | default: "span" }}>
+{%- endif -%}

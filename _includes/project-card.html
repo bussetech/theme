@@ -1,0 +1,23 @@
+{%- comment -%}
+  Project card. Params: a `project` object with:
+    name, url, description, status ("ok"|"warn"|"error"), status_label,
+    visibility ("public"|"private"|"private-published"), subdomain.
+  Shows a "source: private" chip when the repo isn't public — but never a
+  repo URL (ADR-0006 leak rule). Site links point at the published site.
+{%- endcomment -%}
+{%- assign p = include.project -%}
+<article class="card">
+  <h3 class="card__title">
+    {%- if p.url -%}<a href="{{ p.url }}">{{ p.name }}</a>{%- else -%}{{ p.name }}{%- endif -%}
+  </h3>
+  {%- if p.description %}<p class="card__desc">{{ p.description }}</p>{% endif -%}
+  <div class="card__meta">
+    {%- if p.status -%}
+      {% include status-chip.html status=p.status label=p.status_label %}
+    {%- endif -%}
+    {%- if p.visibility and p.visibility != "public" -%}
+      <span class="visibility visibility--private" title="Source repository is private">source: private</span>
+    {%- endif -%}
+    {%- if p.subdomain %}<span>{{ p.subdomain }}</span>{% endif -%}
+  </div>
+</article>

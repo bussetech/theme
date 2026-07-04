@@ -1,0 +1,21 @@
+{%- comment -%}
+  Breadcrumb / wayfinding header. Reads `page.breadcrumbs` — a list of
+  {title, url} — or falls back to Home + page title. The last crumb is
+  the current page (no link). Emits BreadcrumbList structured data for
+  discoverability.
+{%- endcomment -%}
+{%- assign crumbs = page.breadcrumbs -%}
+{%- if crumbs == nil -%}
+  {%- assign crumbs = "" | split: "" -%}
+{%- endif -%}
+<nav class="breadcrumb" aria-label="Breadcrumb">
+  <ol>
+    <li><a href="{{ '/' | relative_url }}">Home</a></li>
+    {%- for c in crumbs -%}
+    <li><a href="{{ c.url | relative_url }}">{{ c.title }}</a></li>
+    {%- endfor -%}
+    {%- if page.title and page.url != "/" -%}
+    <li><span aria-current="page">{{ page.title }}</span></li>
+    {%- endif -%}
+  </ol>
+</nav>

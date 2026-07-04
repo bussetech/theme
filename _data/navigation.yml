@@ -1,0 +1,9 @@
+# Fallback nav data — header.html uses site.studio.nav first, then this.
+- title: Home
+  url: /
+- title: Components
+  url: /components/
+- title: Wayfinding
+  url: /wayfinding/
+- title: Design
+  url: /design/

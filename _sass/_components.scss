@@ -1,0 +1,208 @@
+// _components.scss — the studio component kit. Every color is a token;
+// color is wayfinding only (green=action, blue=info, orange=alert, r/y/g=status).
+
+// ── Logotype: `<org> | software studio` ───────────────────────────────────
+// Text-only. Lowercase, bold org name, hairline pipe, regular descriptor.
+.logotype {
+  font-family: var(--type-family-sans);
+  font-weight: var(--type-weight-regular);
+  color: var(--color-ink);
+  text-decoration: none;
+  text-transform: lowercase;
+  letter-spacing: var(--type-tracking-tight);
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4em;
+}
+.logotype__org { font-weight: var(--type-weight-bold); }
+.logotype__pipe {
+  color: var(--gray-400);
+  font-weight: var(--type-weight-regular);
+}
+.logotype__descriptor { color: var(--color-ink-soft); }
+.logotype--lg { font-size: var(--type-scale-2xl); }
+.logotype--sm { font-size: var(--type-scale-sm); }
+
+// Footer attribution mark ("a <org> | software studio project").
+.attribution {
+  font-size: var(--type-scale-sm);
+  color: var(--color-ink-soft);
+}
+.attribution .logotype { font-size: 1em; }
+
+// ── Status chip (red / amber / green) ─────────────────────────────────────
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--type-scale-xs);
+  font-weight: var(--type-weight-medium);
+  line-height: 1;
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-pill);
+  border: var(--border-hairline) solid var(--gray-300);
+  color: var(--color-ink);
+  background: var(--color-ground);
+  white-space: nowrap;
+}
+.chip__dot {
+  width: 0.5rem; height: 0.5rem; border-radius: var(--radius-pill);
+  flex-shrink: 0; background: var(--gray-400);
+}
+.chip--ok    .chip__dot { background: var(--color-status-green); }
+.chip--warn  .chip__dot { background: var(--color-status-amber); }
+.chip--error .chip__dot { background: var(--color-status-red); }
+// Filled variant (white text on status fill — both pass AA).
+.chip--filled { border-color: transparent; color: var(--color-status-on); }
+.chip--filled.chip--ok    { background: var(--color-status-green); }
+.chip--filled.chip--warn  { background: var(--color-status-amber); }
+.chip--filled.chip--error { background: var(--color-status-red); }
+.chip--filled .chip__dot  { background: var(--color-status-on); }
+
+// ── Action button (green) & info button (blue) ────────────────────────────
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: var(--type-weight-medium);
+  font-size: var(--type-scale-base);
+  line-height: 1;
+  padding: var(--space-3) var(--space-4);
+  border: var(--border-rule) solid transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--color-action-on);
+  background: var(--color-action-base);
+}
+.btn:hover { background: var(--color-action-strong); color: var(--color-action-on); }
+.btn--info { background: var(--color-info-base); color: var(--color-info-on); }
+.btn--info:hover { background: var(--color-info-strong); color: var(--color-info-on); }
+.btn--ghost {
+  background: transparent;
+  color: var(--color-action-base);
+  border-color: var(--color-action-base);
+}
+.btn--ghost:hover { background: var(--color-action-surface); color: var(--color-action-strong); }
+
+// ── Alert banner (orange) — accent border, ink body ───────────────────────
+.alert {
+  border: var(--border-hairline) solid var(--alert-border, var(--gray-300));
+  border-inline-start: var(--border-accent) solid var(--color-alert-base);
+  background: var(--color-alert-surface);
+  color: var(--color-ink);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  margin-block: var(--space-5);
+}
+.alert__label {
+  font-size: var(--type-scale-xs);
+  font-weight: var(--type-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--type-tracking-wide);
+  color: var(--color-alert-text);
+  margin-bottom: var(--space-1);
+}
+.alert > :last-child { margin-bottom: 0; }
+
+// ── Info callout (blue) ───────────────────────────────────────────────────
+.callout {
+  border-inline-start: var(--border-accent) solid var(--color-info-base);
+  background: var(--color-info-surface);
+  color: var(--color-ink);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  margin-block: var(--space-5);
+}
+.callout__label {
+  font-size: var(--type-scale-xs);
+  font-weight: var(--type-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--type-tracking-wide);
+  color: var(--color-info-base);
+  margin-bottom: var(--space-1);
+}
+.callout > :last-child { margin-bottom: 0; }
+
+// ── Card base ─────────────────────────────────────────────────────────────
+.card {
+  border: var(--border-hairline) solid var(--gray-300);
+  border-radius: var(--radius-md);
+  background: var(--color-ground);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  height: 100%;
+}
+.card__title { font-size: var(--type-scale-lg); margin: 0; }
+.card__title a { color: var(--color-ink); text-decoration: none; }
+.card__title a:hover { color: var(--color-action-base); text-decoration: underline; }
+.card__desc { color: var(--color-ink-soft); margin: 0; font-size: var(--type-scale-sm); }
+.card__meta {
+  display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-3);
+  align-items: center; margin-top: auto;
+  font-size: var(--type-scale-xs); color: var(--color-ink-soft);
+}
+.card__meta dt { font-weight: var(--type-weight-bold); text-transform: uppercase; letter-spacing: var(--type-tracking-wide); }
+.card__meta dd { margin: 0; }
+
+// Visibility indicator — "source: private" when a repo isn't public.
+.visibility {
+  display: inline-flex; align-items: center; gap: var(--space-1);
+  font-size: var(--type-scale-xs);
+  color: var(--color-ink-soft);
+  border: var(--border-hairline) solid var(--gray-300);
+  border-radius: var(--radius-sm);
+  padding: 0 var(--space-2);
+}
+.visibility--private { color: var(--color-alert-text); border-color: var(--color-alert-base); }
+
+// ── Gnome card ────────────────────────────────────────────────────────────
+.gnome-card .gnome-card__var {
+  font-family: var(--type-family-mono);
+  font-size: var(--type-scale-sm);
+  color: var(--color-info-base);
+}
+.gnome-card__level {
+  font-size: var(--type-scale-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--type-tracking-wide);
+  font-weight: var(--type-weight-bold);
+  color: var(--color-ink-soft);
+}
+
+// ── Feed-item card ────────────────────────────────────────────────────────
+.feed-item {
+  padding-block: var(--space-4);
+  border-bottom: var(--border-hairline) solid var(--gray-300);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+.feed-item__date { font-size: var(--type-scale-xs); color: var(--color-ink-soft); font-variant-numeric: tabular-nums; }
+.feed-item__title { font-size: var(--type-scale-md); font-weight: var(--type-weight-bold); margin: 0; }
+.feed-item__title a { color: var(--color-ink); }
+.feed-item__title a:hover { color: var(--color-action-base); }
+.feed-item__source { font-size: var(--type-scale-xs); color: var(--color-ink-soft); }
+
+// ── Breadcrumb / wayfinding header ────────────────────────────────────────
+.breadcrumb {
+  display: flex; flex-wrap: wrap; align-items: center; gap: var(--space-2);
+  font-size: var(--type-scale-sm);
+  color: var(--color-ink-soft);
+  margin-bottom: var(--space-4);
+}
+.breadcrumb ol { display: contents; }
+.breadcrumb li { display: inline-flex; align-items: center; gap: var(--space-2); }
+.breadcrumb li:not(:last-child)::after {
+  content: "/"; color: var(--gray-400);
+}
+.breadcrumb a { color: var(--color-info-base); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+.breadcrumb [aria-current] { color: var(--color-ink); font-weight: var(--type-weight-medium); }
+
+// ── Post / article meta ───────────────────────────────────────────────────
+.post-meta { color: var(--color-ink-soft); font-size: var(--type-scale-sm); margin-bottom: var(--space-5); }
+.post-list { list-style: none; padding: 0; }

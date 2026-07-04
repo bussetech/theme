@@ -1,0 +1,19 @@
+# Demo data for the components page — not shipped to consumers.
+- display_name: Gnome DNS Steward
+  var: gn_dns_steward
+  level: platform
+  status: ok
+  status_label: idle
+  home: platform
+- display_name: Gnome Data Center Scout
+  var: gn_dc_scout
+  level: project
+  status: warn
+  status_label: rate-limited
+  home: dc
+- display_name: Gnome Repo Docs
+  var: gn_repo_docs
+  level: platform
+  status: ok
+  status_label: idle
+  home: platform
