@@ -5,6 +5,8 @@
   status: ok
   status_label: idle
   home: platform
+  purpose: Reconcile the studio's DNS zone and flag anything it doesn't own.
+  deployments: [platform]
 - display_name: Gnome Data Center Scout
   var: gn_dc_scout
   level: project

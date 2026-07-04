@@ -1,7 +1,8 @@
 {%- comment -%}
   Gnome card. Params: a `gnome` object with:
     display_name, var (the gn_* variable name), level ("platform"|"project"),
-    status ("ok"|"warn"|"error"), status_label, home (home repo), url.
+    status ("ok"|"warn"|"error"), status_label, home (home repo), url,
+    purpose (optional one-liner), deployments (optional array of repo names).
 {%- endcomment -%}
 {%- assign g = include.gnome -%}
 <article class="card gnome-card">
@@ -9,6 +10,7 @@
     {%- if g.url -%}<a href="{{ g.url }}">{{ g.display_name }}</a>{%- else -%}{{ g.display_name }}{%- endif -%}
   </h3>
   <p class="gnome-card__var">{{ g.var }}</p>
+  {%- if g.purpose %}<p class="card__desc">{{ g.purpose }}</p>{% endif -%}
   <dl class="card__meta">
     <div><dt class="visually-hidden">Level</dt><dd class="gnome-card__level">{{ g.level }}</dd></div>
     {%- if g.status -%}
@@ -16,6 +18,9 @@
     {%- endif -%}
     {%- if g.home -%}
     <div><dt>Home</dt><dd>{{ g.home }}</dd></div>
+    {%- endif -%}
+    {%- if g.deployments and g.deployments.size > 0 -%}
+    <div><dt>Works in</dt><dd>{{ g.deployments | join: ", " }}</dd></div>
     {%- endif -%}
   </dl>
 </article>

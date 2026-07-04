@@ -6,6 +6,14 @@ All notable changes to the studio theme. The format follows
 
 ## [Unreleased]
 
+## [0.2.0] — 2026-07-04
+
+### Added
+
+- **Gnome card**: optional `purpose` (one-line description) and `deployments`
+  (list of repos the gnome works in) fields, both rendered only when present.
+  Requested by the portal's gnome directory (EPIC1-07); backward-compatible.
+
 ## [0.1.0] — 2026-07-04
 
 First release — the shared visual system for the Bussetech Software Studio.
@@ -38,5 +46,6 @@ First release — the shared visual system for the Bussetech Software Studio.
 - **CI**: build the demo site, run contrast + token-freshness checks, fail on
   Sass/build errors. Third-party Actions pinned to commit SHAs.
 
-[Unreleased]: https://github.com/bussetech/theme/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/bussetech/theme/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/bussetech/theme/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/bussetech/theme/releases/tag/v0.1.0
