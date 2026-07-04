@@ -61,7 +61,10 @@ builds on its own (`bundle install && bundle exec jekyll build`). To detach:
    needed to rebrand: consuming sites pass their own `studio.logotype`.
 3. Consuming sites reference this repo as `<owner>/theme@vX.Y.Z`; re-point that
    string if the owner/org changes.
-
-The theme has no `platform.yml` dependency at build time and calls no studio
-reusable workflows — its only studio binding is its registration in the
-control repo's `platform.yml`.
+4. CI's `site` job calls the studio's reusable site CI
+   (`bussetech/platform/.github/workflows/reusable-site-ci.yml@v1`), guarded by
+   `if: github.repository_owner == 'bussetech'`. Outside the org that job
+   **skips and stays green** — the theme-specific `checks` job (palette + token
+   freshness) is self-contained and still runs. To fully re-home CI, replace the
+   `site` job with a local Jekyll build. This is the theme's only build-time
+   studio binding beyond its `platform.yml` registration.
