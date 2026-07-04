@@ -1,13 +1,10 @@
 name: ci
 
-# Self-contained by necessity: `theme` is a PUBLIC repo and the studio's
-# reusable site CI lives in the PRIVATE `platform` repo. GitHub cannot resolve
-# a private repo's reusable workflow from a public caller (it would have to be
-# readable by anyone, incl. fork PRs) — a Team-plan constraint (no `internal`
-# visibility). So public repos run the checks locally until the sysop resolves
-# the shared-CI-for-public-repos question (platform ADR-0011 / needs-human).
-# The check set below mirrors reusable-site-ci: build → HTML sanity →
-# discoverability → artifact, plus the theme-specific WCAG-AA palette gate.
+# The theme is a first real caller of the studio's shared site CI, which lives
+# in the public `bussetech/ci` repo (a public repo can't call a private repo's
+# reusable workflow — platform ADR-0011). Site build/link/HTML/discoverability/
+# artifact come from the shared workflow; theme-SPECIFIC checks (WCAG-AA palette,
+# token-stylesheet freshness) stay here — they guard the design system.
 
 on:
   push:
@@ -19,48 +16,27 @@ permissions:
   contents: read
 
 jobs:
-  build:
+  # Design-system-specific gates (fast, no Ruby).
+  checks:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v4.2.2
-
       - name: Set up Python
         uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v5.3.0
         with:
           python-version: "3.12"
-
       - name: Validate palette (WCAG AA) and token freshness
         run: |
           python -m pip install --quiet 'pyyaml>=6,<7'
           python scripts/check_contrast.py
           python scripts/build_tokens.py --check
 
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@d45b1a4e94b71acab930e56e79c6aa188764e7f9 # v1.316.0
-        with:
-          ruby-version: "3.3"
-          bundler-cache: true
-
-      - name: Build demo site
-        env:
-          JEKYLL_ENV: production
-        run: bundle exec jekyll build --trace
-
-      - name: Sanity-check discoverability outputs
-        run: |
-          set -e
-          for f in index.html sitemap.xml robots.txt feed.xml feed.json \
-                   components/index.html design/index.html assets/css/main.css; do
-            test -s "_site/$f" || { echo "missing/empty: _site/$f"; exit 1; }
-          done
-          python -c "import json; json.load(open('_site/feed.json'))"
-          python -c "import xml.dom.minidom as m; m.parse('_site/feed.xml'); m.parse('_site/sitemap.xml')"
-          echo "discoverability outputs present and well-formed."
-
-      - name: Upload site artifact
-        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v4.4.3
-        with:
-          name: demo-site
-          path: _site
-          retention-days: 7
+  # Standardized site CI via the shared reusable workflow. The `if` guard makes
+  # a detached copy of this repo (outside the org) skip the call and stay green.
+  site:
+    if: ${{ github.repository_owner == 'bussetech' }}
+    uses: bussetech/ci/.github/workflows/reusable-site-ci.yml@v1
+    with:
+      visibility: public
+      artifact_name: demo-site
