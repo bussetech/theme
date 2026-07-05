@@ -1,0 +1,14 @@
+{%- comment -%}
+  map-legend — the default status colour key for a map. Wayfinding: the
+  swatches mirror map.js marker styling (r/y/g status tokens; the earliest
+  stage neutral; a terminal/cancelled stage a hollow ring — inactive records
+  stay visible, not deleted, per GD-0004). This shows the info-archetype
+  lifecycle default; a project with a different vocabulary supplies its own
+  legend markup.
+{%- endcomment -%}
+<ul class="map-legend" aria-label="Marker status key">
+  <li><span class="map-legend__dot map-legend__dot--operational" aria-hidden="true"></span>operational</li>
+  <li><span class="map-legend__dot map-legend__dot--in-progress" aria-hidden="true"></span>permitted / under construction</li>
+  <li><span class="map-legend__dot map-legend__dot--announced" aria-hidden="true"></span>announced</li>
+  <li><span class="map-legend__dot map-legend__dot--cancelled" aria-hidden="true"></span>cancelled</li>
+</ul>

@@ -31,6 +31,8 @@ jobs:
           python -m pip install --quiet 'pyyaml>=6,<7'
           python scripts/check_contrast.py
           python scripts/build_tokens.py --check
+      - name: Verify vendored assets against checksum manifest (ADR-0027)
+        run: python scripts/check_vendor.py
 
   # Standardized site CI via the shared reusable workflow. The `if` guard makes
   # a detached copy of this repo (outside the org) skip the call and stay green.

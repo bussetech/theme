@@ -1,0 +1,25 @@
+{%- comment -%}
+  map-locator — small single-point map for a record/detail page. The page
+  must set `map: true`. Renders nothing (leaves the container empty) when no
+  coordinates are supplied, so a record without lat/lon simply shows no map.
+  Params:
+    lat, lon (required for a marker) the point.
+    status   (optional) lifecycle status -> marker colour (wayfinding).
+    label    (optional) popup title.
+    zoom     (optional) initial zoom (default 9).
+    height   (optional) CSS height (default 18rem).
+    caption  (optional) small print under the map.
+{%- endcomment -%}
+{%- if include.lat and include.lon -%}
+<div class="map map--locator"
+     data-map-mode="locator"
+     data-map-lat="{{ include.lat }}"
+     data-map-lon="{{ include.lon }}"
+     {% if include.status %}data-map-status="{{ include.status }}"{% endif %}
+     {% if include.label %}data-map-label="{{ include.label | strip_html }}"{% endif %}
+     data-map-zoom="{{ include.zoom | default: 9 }}"
+     style="height: {{ include.height | default: '18rem' }};"
+     role="img" aria-label="Location map for {{ include.label | default: 'this site' | strip_html }}">
+</div>
+{%- if include.caption %}<p class="map-caption">{{ include.caption }}</p>{% endif -%}
+{%- endif -%}

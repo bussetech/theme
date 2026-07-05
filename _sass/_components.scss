@@ -206,3 +206,81 @@
 // ── Post / article meta ───────────────────────────────────────────────────
 .post-meta { color: var(--color-ink-soft); font-size: var(--type-scale-sm); margin-bottom: var(--space-5); }
 .post-list { list-style: none; padding: 0; }
+
+// ── Map (Leaflet) ─────────────────────────────────────────────────────────
+// Vendored Leaflet renders inside `.map`; ADR-0027. Colour is wayfinding —
+// markers are status-tinted by map.js from the status tokens. The reset's
+// `img/svg { max-width: 100% }` would distort tiles, so it is undone here.
+.map {
+  position: relative;
+  width: 100%;
+  border: var(--border-hairline) solid var(--gray-300);
+  border-radius: var(--radius-sm);
+  background: var(--color-ground_alt);
+  z-index: 0; // keep Leaflet panes below any sticky site chrome
+}
+.map img, .map svg { max-width: none; }
+.map .leaflet-container { font: inherit; background: var(--color-ground_alt); }
+.map--locator { margin-block: var(--space-4); }
+
+.map-caption {
+  font-size: var(--type-scale-xs);
+  color: var(--color-ink-soft);
+  margin-block: var(--space-2) var(--space-4);
+}
+
+// Filter controls sit above the cluster map (progressive enhancement — the
+// host is `hidden` until map.js populates it from the data facets).
+.map-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-bottom: var(--space-4);
+}
+.map-filter {
+  border: var(--border-hairline) solid var(--gray-300);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-3);
+  min-width: 0;
+}
+.map-filter legend {
+  font-size: var(--type-scale-xs);
+  text-transform: uppercase;
+  letter-spacing: var(--type-tracking-wide);
+  font-weight: var(--type-weight-bold);
+  color: var(--color-ink-soft);
+  padding-inline: var(--space-1);
+}
+.map-filter__opt {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--type-scale-sm);
+  margin-right: var(--space-3);
+  white-space: nowrap;
+}
+
+// Popup: match the site type, not Leaflet's default.
+.map-popup { font-size: var(--type-scale-sm); line-height: var(--type-leading-snug); }
+.map-popup a { color: var(--color-info-base); }
+.map-popup__meta { color: var(--color-ink-soft); font-size: var(--type-scale-xs); }
+
+// Legend — status colours as wayfinding key. Swatches mirror map.js styling.
+.map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  font-size: var(--type-scale-sm);
+  margin-block: var(--space-3);
+  padding: 0;
+  list-style: none;
+}
+.map-legend li { display: inline-flex; align-items: center; gap: var(--space-2); }
+.map-legend__dot {
+  width: 0.85rem; height: 0.85rem; border-radius: 50%;
+  border: 2px solid currentColor; flex: none;
+}
+.map-legend__dot--operational { color: var(--color-status-green); background: var(--color-status-green); }
+.map-legend__dot--in-progress { color: var(--color-status-amber); background: var(--color-status-amber); }
+.map-legend__dot--announced   { color: var(--gray-500);          background: var(--gray-500); }
+.map-legend__dot--cancelled   { color: var(--gray-500);          background: transparent; }
