@@ -10,6 +10,9 @@ Each block below is produced by the same include a project site calls. Color
 is wayfinding only — watch where green, blue, orange, and red/amber/green
 appear, and where they deliberately do not.
 
+The [map components](/maps/) (cluster + locator) live on their own page — they
+pull in vendored Leaflet only when a page opts in.
+
 ## Logotype & attribution
 
 The masthead above and the footer below both render the logotype from

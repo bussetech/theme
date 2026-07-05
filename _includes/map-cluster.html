@@ -1,0 +1,24 @@
+{%- comment -%}
+  map-cluster — full-dataset clustered map. The page must set `map: true`.
+  Params:
+    geojson  (required) URL to a same-origin GeoJSON FeatureCollection of
+             Point features; each feature.properties may carry name, status,
+             operator, capacity_mw, location, url (the record page).
+    filters  (optional) comma-separated property names to build filter
+             controls from (e.g. "status,operator,state"). Facets and counts
+             are derived from the data at load.
+    height   (optional) CSS height for the map (default 32rem).
+    caption  (optional) small print under the map (e.g. attribution / geo note).
+  Colour is wayfinding: markers are status-coloured from the design tokens by
+  map.js. With JS off, nothing renders here — the page's tables are the
+  baseline (keep them on the page).
+{%- endcomment -%}
+<div class="map-controls" data-map-controls hidden></div>
+<div class="map map--cluster"
+     data-map-mode="cluster"
+     data-map-geojson="{{ include.geojson }}"
+     {% if include.filters %}data-map-filters="{{ include.filters }}"{% endif %}
+     style="height: {{ include.height | default: '32rem' }};"
+     role="img" aria-label="Map of {{ include.caption | default: 'sites' | strip_html }}">
+</div>
+{%- if include.caption %}<p class="map-caption">{{ include.caption }}</p>{% endif -%}

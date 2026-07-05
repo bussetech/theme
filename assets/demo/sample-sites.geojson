@@ -1,0 +1,17 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [-77.6360, 37.5407] },
+      "properties": { "name": "Sample Operational Campus", "status": "operational", "operator": "acme-cloud", "state": "VA", "capacity_mw": 120, "location": "Henrico, VA", "url": "#" } },
+    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [-77.5050, 37.3770] },
+      "properties": { "name": "Sample Under-Construction Site", "status": "under-construction", "operator": "acme-cloud", "state": "VA", "capacity_mw": 90, "location": "Chesterfield, VA", "url": "#" } },
+    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [-77.4600, 37.3700] },
+      "properties": { "name": "Sample Permitted Site", "status": "permitted", "operator": "globex", "state": "VA", "location": "Chesterfield, VA", "url": "#" } },
+    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [-77.9200, 37.6600] },
+      "properties": { "name": "Sample Announced Site", "status": "announced", "operator": "globex", "state": "VA", "location": "Goochland, VA", "url": "#" } },
+    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [-77.4880, 38.7509] },
+      "properties": { "name": "Sample Cancelled Proposal", "status": "cancelled", "operator": "initech", "state": "VA", "location": "Prince William, VA", "url": "#" } },
+    { "type": "Feature", "geometry": { "type": "Point", "coordinates": [-95.8608, 41.2619] },
+      "properties": { "name": "Sample Midwest Campus", "status": "operational", "operator": "initech", "state": "IA", "capacity_mw": 200, "location": "Council Bluffs, IA", "url": "#" } }
+  ]
+}

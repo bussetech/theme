@@ -6,6 +6,30 @@ All notable changes to the studio theme. The format follows
 
 ## [Unreleased]
 
+## [0.4.0] — 2026-07-05
+
+### Added
+
+- **Map components** (EPIC2-06, ADR-0027): a static-friendly map layer for the
+  info/OSINT archetype, as progressive enhancement over a data table.
+  - `map-cluster` — a full-dataset clustered map that fetches a same-origin
+    pre-rendered GeoJSON `FeatureCollection` and builds filter-facet controls
+    from named feature properties (e.g. `status,operator,state`).
+  - `map-locator` — a single-point map for a record/detail page; renders
+    nothing when no `lat`/`lon` is supplied.
+  - `map-legend` — the status colour key.
+  - Markers are status-coloured from the existing status tokens (r/y/g); the
+    earliest stage is neutral and a terminal/`cancelled` stage is a hollow,
+    dimmed ring (visible, not deleted — GD-0004). No new colour tokens.
+  - **Vendored, pinned** Leaflet 1.9.4 + Leaflet.markercluster 1.5.3 under
+    `assets/vendor/leaflet/` with a checksum manifest (`VENDOR.md`) enforced by
+    `scripts/check-vendor.sh` in CI — no CDN hotlink (supply-chain rule).
+  - Assets load **only** on pages with `map: true` front-matter, gated by the
+    new `map-head`/`map-scripts` includes; table-only pages load none of it.
+  - Basemap: OpenStreetMap raster tiles (keyless, attributed) — the single
+    permitted external request. Demo: `/maps/`.
+  Backward-compatible: existing sites that set no `map:` flag are unaffected.
+
 ## [0.3.0] — 2026-07-05
 
 ### Added
