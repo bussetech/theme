@@ -51,9 +51,9 @@
 
   /* color */
   --color-ground: #FFFFFF;
-  --color-ground_alt: #FAFAF8;
+  --color-ground-alt: #FAFAF8;
   --color-ink: #1A1A1A;
-  --color-ink_soft: #565656;
+  --color-ink-soft: #565656;
   --color-action-base: #00843D;
   --color-action-strong: #006B31;
   --color-action-on: #FFFFFF;
@@ -85,7 +85,7 @@
   /* layout */
   --layout-measure: 68ch;
   --layout-container: 72rem;
-  --layout-container_wide: 84rem;
+  --layout-container-wide: 84rem;
 
   /* breakpoint */
   --bp-sm: 40rem;
@@ -137,9 +137,9 @@ $gray-700: var(--gray-700);
 $gray-800: var(--gray-800);
 $gray-900: var(--gray-900);
 $color-ground: var(--color-ground);
-$color-ground_alt: var(--color-ground_alt);
+$color-ground-alt: var(--color-ground-alt);
 $color-ink: var(--color-ink);
-$color-ink_soft: var(--color-ink_soft);
+$color-ink-soft: var(--color-ink-soft);
 $color-action-base: var(--color-action-base);
 $color-action-strong: var(--color-action-strong);
 $color-action-on: var(--color-action-on);
@@ -165,7 +165,7 @@ $radius-md: var(--radius-md);
 $radius-pill: var(--radius-pill);
 $layout-measure: var(--layout-measure);
 $layout-container: var(--layout-container);
-$layout-container_wide: var(--layout-container_wide);
+$layout-container-wide: var(--layout-container-wide);
 $bp-sm: var(--bp-sm);
 $bp-md: var(--bp-md);
 $bp-lg: var(--bp-lg);

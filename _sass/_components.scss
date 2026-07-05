@@ -216,11 +216,11 @@
   width: 100%;
   border: var(--border-hairline) solid var(--gray-300);
   border-radius: var(--radius-sm);
-  background: var(--color-ground_alt);
+  background: var(--color-ground-alt);
   z-index: 0; // keep Leaflet panes below any sticky site chrome
 }
 .map img, .map svg { max-width: none; }
-.map .leaflet-container { font: inherit; background: var(--color-ground_alt); }
+.map .leaflet-container { font: inherit; background: var(--color-ground-alt); }
 .map--locator { margin-block: var(--space-4); }
 
 .map-caption {

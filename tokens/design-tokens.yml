@@ -83,9 +83,9 @@ gray:
 # ── Color: ground, ink, and the wayfinding signals ────────────────────────
 color:
   ground: '#FFFFFF'         # page background
-  ground_alt: '#FAFAF8'     # off-white panels
+  ground-alt: '#FAFAF8'     # off-white panels
   ink: '#1A1A1A'            # near-black body text (AA: 17.4:1)
-  ink_soft: '#565656'       # de-emphasized ink (== gray-600)
+  ink-soft: '#565656'       # de-emphasized ink (== gray-600)
 
   # GREEN = action. base doubles as link text (4.81:1) and button fill.
   action:
@@ -133,7 +133,7 @@ radius:
 layout:
   measure: 68ch             # max text line length (readability)
   container: 72rem          # max content width
-  container_wide: 84rem
+  container-wide: 84rem
 breakpoint:
   sm: 40rem    # 640
   md: 48rem    # 768
@@ -145,7 +145,7 @@ breakpoint:
 # text, 3.0 large text / UI). fg/bg are dotted token paths or literal hex.
 contrast_checks:
   - { name: 'body ink / white',        fg: color.ink,          bg: color.ground,        min: 4.5 }
-  - { name: 'body ink / off-white',    fg: color.ink,          bg: color.ground_alt,    min: 4.5 }
+  - { name: 'body ink / off-white',    fg: color.ink,          bg: color.ground-alt,    min: 4.5 }
   - { name: 'muted / white',           fg: gray.500,           bg: color.ground,        min: 4.5 }
   - { name: 'secondary / white',       fg: gray.600,           bg: color.ground,        min: 4.5 }
   - { name: 'action link / white',     fg: color.action.base,  bg: color.ground,        min: 4.5 }
