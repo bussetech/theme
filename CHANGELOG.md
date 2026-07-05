@@ -6,6 +6,17 @@ All notable changes to the studio theme. The format follows
 
 ## [Unreleased]
 
+## [0.3.0] — 2026-07-05
+
+### Added
+
+- **Footer copyright**: the footer renders `site.studio.legal.copyright` when
+  present — the studio's legal identity from the control repo's `platform.yml`
+  (`branding.legal.copyright`), injected per site by the factory. Sites that
+  supply no `legal.copyright` omit the line, so the change is backward
+  compatible (EPIC2-01). No hardcoded entity in theme source; the demo
+  `_config.yml` carries a sample value for the visual-regression surface.
+
 ## [0.2.0] — 2026-07-04
 
 ### Added
@@ -46,6 +57,7 @@ First release — the shared visual system for the Bussetech Software Studio.
 - **CI**: build the demo site, run contrast + token-freshness checks, fail on
   Sass/build errors. Third-party Actions pinned to commit SHAs.
 
-[Unreleased]: https://github.com/bussetech/theme/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/bussetech/theme/compare/v0.3.0...HEAD
+[0.3.0]: https://github.com/bussetech/theme/compare/v0.2.0...v0.3.0
 [0.2.0]: https://github.com/bussetech/theme/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/bussetech/theme/releases/tag/v0.1.0

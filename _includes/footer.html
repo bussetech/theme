@@ -13,6 +13,15 @@
       a {% include logotype.html size="sm" %} project
       {%- endif -%}
     </p>
+    {%- comment -%}
+      Copyright line, rendered from the studio's legal identity in the control
+      repo's platform.yml (branding.legal.copyright), injected into each site's
+      studio contract. No hardcoded entity — a site that supplies no
+      legal.copyright simply omits the line.
+    {%- endcomment -%}
+    {%- if site.studio.legal.copyright -%}
+    <p class="attribution">{{ site.studio.legal.copyright }}</p>
+    {%- endif -%}
     <p class="attribution">
       {%- if site.studio.footer_note %}{{ site.studio.footer_note }}{% endif -%}
     </p>

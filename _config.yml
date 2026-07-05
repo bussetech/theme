@@ -22,7 +22,12 @@ studio:
   is_portal: false          # the demo shows the "a … project" attribution
   theme_color: "#FFFFFF"    # mobile browser-chrome hint (== token color.ground)
   analytics_beacon: ""      # empty → no beacon rendered (see _includes/analytics.html)
-  footer_note: "Theme v0.1.0 · MIT"
+  # Legal identity a consuming site injects from platform.yml branding.legal
+  # (the factory fills studio.legal.copyright). Shown here so the demo renders
+  # the footer copyright line — the visual-regression surface for the release.
+  legal:
+    copyright: "© 2026 Eszett, LLC"
+  footer_note: "Theme v0.3.0 · MIT"
   nav:
     - title: Home
       url: /
