@@ -6,6 +6,15 @@ All notable changes to the studio theme. The format follows
 
 ## [Unreleased]
 
+## [0.4.1] — 2026-07-05
+
+### Fixed
+
+- **`map-cluster` accessible name**: the map's `aria-label` reused the caption,
+  so a screen reader announced "Map of © OpenStreetMap contributors…". It now
+  takes an optional `label` (default "the tracked sites") decoupled from the
+  caption. Caught canarying v0.4.0 on kdc. Backward-compatible.
+
 ## [0.4.0] — 2026-07-05
 
 ### Added

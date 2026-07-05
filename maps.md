@@ -34,6 +34,7 @@ named feature properties (counts derived from the data).
    geojson="/assets/demo/sample-sites.geojson"
    filters="status,operator,state"
    height="30rem"
+   label="the sample sites"
    caption="Demo data. © OpenStreetMap contributors." %}
 
 ```liquid

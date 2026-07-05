@@ -27,7 +27,7 @@ studio:
   # the footer copyright line — the visual-regression surface for the release.
   legal:
     copyright: "© 2026 Eszett, LLC"
-  footer_note: "Theme v0.4.0 · MIT"
+  footer_note: "Theme v0.4.1 · MIT"
   nav:
     - title: Home
       url: /
