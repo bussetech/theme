@@ -6,6 +6,22 @@ All notable changes to the studio theme. The format follows
 
 ## [Unreleased]
 
+## [0.4.2] — 2026-07-05
+
+### Fixed
+
+- **Muted text and wide container were silently broken** by a token key /
+  custom-property name mismatch (theme#4). The token keys `ink_soft`,
+  `ground_alt`, and `container_wide` emitted underscore custom properties
+  (`--color-ink_soft`, …) while every reference used the kebab-case form
+  (`var(--color-ink-soft)`, `var(--layout-container-wide)`), so those
+  properties were undefined: all de-emphasized text fell back to full ink, and
+  `.container--wide` lost its 84rem cap. Renamed the three keys to kebab-case
+  so the generated properties match the references; regenerated
+  `_sass/_tokens.scss`. Now every custom property is uniformly hyphenated.
+  Contrast still proves AA (`#565656` on white = 7.34:1). PATCH (bug fix), but
+  visibly changes muted text — canaried on kdc.
+
 ## [0.4.1] — 2026-07-05
 
 ### Fixed
