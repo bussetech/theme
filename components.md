@@ -92,6 +92,23 @@ Display name, `gn_*` variable name, level, status, and home repo.
   {% for i in site.data.demo_feed %}{% include feed-item.html item=i %}{% endfor %}
 </div>
 
+## Email signup — neutral region, green submit only
+
+Config-gated (`studio.signup` in the site config): renders nothing unless a
+site opts in with a provider `action`. A plain no-JS POST to an external
+provider — no pixel, no popup, no cookie. The provider holds the PII; the
+studio's repos hold only the aggregate count (platform ADR-0034). The privacy
+note is injected by the site and must name Eszett, LLC. Green appears only on
+the submit button (action = "you can subscribe"); the region itself is neutral.
+
+{% include signup.html %}
+
+The same include serves other placements by passing a `placement` (attributes
+the capture by source) and, later, `upgrade` framing for the content-upgrade
+gates (case study / whitepaper, prompts 06/08):
+
+{% include signup.html heading="Get the case study" placement="components-demo" upgrade=true %}
+
 ## Typographic scale & elements
 
 # Heading 1

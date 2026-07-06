@@ -125,6 +125,40 @@
 }
 .callout > :last-child { margin-bottom: 0; }
 
+// ── Email signup (neutral region; green is only on the submit = "you can do this") ──
+.signup {
+  border: var(--border-hairline) solid var(--gray-300);
+  background: var(--color-ground-alt);
+  padding: var(--space-5);
+  border-radius: var(--radius-md);
+  margin-block: var(--space-6);
+}
+.signup__heading { margin: 0 0 var(--space-2); }
+.signup__value {
+  margin: 0 0 var(--space-4);
+  color: var(--color-ink-soft);
+  max-width: 42rem;
+}
+.signup__form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  align-items: center;
+}
+.signup__input {
+  flex: 1 1 16rem;
+  padding: var(--space-3) var(--space-4);
+  border: var(--border-hairline) solid var(--gray-300);
+  border-radius: var(--radius-sm);
+  font-size: var(--type-scale-base);
+}
+.signup__privacy {
+  margin: var(--space-3) 0 0;
+  font-size: var(--type-scale-xs);
+  color: var(--color-ink-soft);
+}
+.signup > :last-child { margin-bottom: 0; }
+
 // ── Card base ─────────────────────────────────────────────────────────────
 .card {
   border: var(--border-hairline) solid var(--gray-300);

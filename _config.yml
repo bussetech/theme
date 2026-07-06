@@ -22,12 +22,27 @@ studio:
   is_portal: false          # the demo shows the "a … project" attribution
   theme_color: "#FFFFFF"    # mobile browser-chrome hint (== token color.ground)
   analytics_beacon: ""      # empty → no beacon rendered (see _includes/analytics.html)
+  # Email-signup capture (see _includes/signup.html). Off unless `enabled` +
+  # `action` are set; the demo turns it on so the /components/ visual-regression
+  # surface renders it. A consuming site injects its own provider action and
+  # privacy note (the note MUST name Eszett, LLC per platform ADR-0034).
+  signup:
+    enabled: true
+    action: "https://buttondown.com/api/emails/embed-subscribe/example"
+    email_field: email
+    heading: "Get studio updates"
+    value_prop: "One human, a workforce of gnomes, every run receipted. Occasional notes on what the studio shipped — no spam, no tracking."
+    button_label: "Subscribe"
+    privacy_note: "We store only your email, to send these updates, under the Eszett, LLC privacy notice. Double opt-in; unsubscribe any time."
+    hidden:
+      embed: "1"
+    placement_field: "metadata__placement"
   # Legal identity a consuming site injects from platform.yml branding.legal
   # (the factory fills studio.legal.copyright). Shown here so the demo renders
   # the footer copyright line — the visual-regression surface for the release.
   legal:
     copyright: "© 2026 Eszett, LLC"
-  footer_note: "Theme v0.4.2 · MIT"
+  footer_note: "Theme (unreleased) · MIT"
   nav:
     - title: Home
       url: /
