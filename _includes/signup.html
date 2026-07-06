@@ -1,0 +1,52 @@
+{%- comment -%}
+  Email-signup capture block. Renders ONLY when the consuming site opts in
+  via a `studio.signup` config hash (mirrors the analytics-beacon gate:
+  off by default, no config → no markup). A plain, no-JS, no-pixel, no-popup
+  <form> that POSTs to an external provider (the provider holds the PII; the
+  studio's repos hold only aggregates — platform ADR-0034). Degrades to a
+  normal browser POST with native `type="email" required` validation.
+
+  Shared config (studio.signup in the site _config.yml):
+    enabled        required truthy, else nothing renders
+    action         required — the provider's form endpoint URL, else nothing renders
+    email_field    provider's email input name (default "email")
+    heading        block heading (default "Get studio updates")
+    value_prop     one-line value proposition (from the positioning theses)
+    button_label   submit label (default "Subscribe")
+    privacy_note   consent/privacy line — MUST name Eszett, LLC per ADR-0034
+    hidden         map of provider-required hidden fields, e.g. { embed: "1" }
+    placement_field  provider field that carries the placement tag (optional;
+                     e.g. "tag" for a per-placement capture count)
+
+  Per-call overrides (so one component serves homepage / dataset / upgrade):
+    placement   value written to placement_field, to attribute capture by source
+    heading     overrides config heading (e.g. a content-upgrade framing)
+    value_prop  overrides config value_prop
+    upgrade     truthy → adds the `signup--upgrade` modifier (content-upgrade
+                hook, stubbed for the case-study / whitepaper gates, prompts 06/08)
+{%- endcomment -%}
+{%- assign _s = site.studio.signup -%}
+{%- if _s and _s.enabled and _s.action -%}
+{%- assign _heading = include.heading | default: _s.heading | default: "Get studio updates" -%}
+{%- assign _value = include.value_prop | default: _s.value_prop -%}
+{%- assign _email_field = _s.email_field | default: "email" -%}
+{%- assign _btn = _s.button_label | default: "Subscribe" -%}
+{%- assign _cls = "signup" -%}
+{%- if include.upgrade %}{% assign _cls = "signup signup--upgrade" %}{% endif -%}
+<section class="{{ _cls }}" aria-label="Email signup">
+  <h2 class="signup__heading">{{ _heading }}</h2>
+  {%- if _value %}<p class="signup__value">{{ _value }}</p>{% endif -%}
+  <form class="signup__form" action="{{ _s.action }}" method="post" target="_blank" rel="noopener">
+    <input class="signup__input" type="email" name="{{ _email_field }}" aria-label="Email address"
+           autocomplete="email" required placeholder="you@example.com">
+    {%- for f in _s.hidden -%}
+    <input type="hidden" name="{{ f[0] }}" value="{{ f[1] }}">
+    {%- endfor -%}
+    {%- if include.placement and _s.placement_field -%}
+    <input type="hidden" name="{{ _s.placement_field }}" value="{{ include.placement }}">
+    {%- endif -%}
+    <button class="btn" type="submit">{{ _btn }}</button>
+  </form>
+  {%- if _s.privacy_note %}<p class="signup__privacy">{{ _s.privacy_note }}</p>{% endif -%}
+</section>
+{%- endif -%}

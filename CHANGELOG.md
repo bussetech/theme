@@ -6,6 +6,24 @@ All notable changes to the studio theme. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- **`signup.html` — config-gated email-capture block** (platform EPIC3-03, #98).
+  Renders only when the consuming site sets a `studio.signup` config hash with
+  `enabled` + a provider `action` (gate mirrors the analytics beacon: off by
+  default, no config → no markup). A plain, no-JS, no-pixel, no-popup `<form>`
+  that POSTs to an external provider (Buttondown) — the provider holds the PII;
+  the studio's repos hold only the aggregate count (platform ADR-0034). Native
+  `type="email" required` validation, progressive-enhancement POST. Heading,
+  value-prop, privacy note (which MUST name Eszett, LLC), button label, and
+  provider hidden fields are all config-injected; a per-call `placement`
+  attributes captures by source and `upgrade` flags the content-upgrade framing
+  stubbed for prompts 06/08. Neutral region; green appears only on the submit
+  (wayfinding-clean). New `.signup*` styles use existing tokens only. Rendered on
+  the `/components/` visual-regression surface. Backward-compatible addition —
+  existing sites gain the include and gain markup only when they opt in. MINOR.
+  Canary on www, then kdc.
+
 ## [0.5.0] — 2026-07-06
 
 ### Added
