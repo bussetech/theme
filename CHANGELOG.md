@@ -6,6 +6,19 @@ All notable changes to the studio theme. The format follows
 
 ## [Unreleased]
 
+## [0.5.0] — 2026-07-06
+
+### Added
+
+- **AI-crawler policy in `robots.txt`** (platform ADR-0032, EPIC3-01): the public
+  tier now carries explicit `Allow` stanzas for the major AI user-agents — training
+  *and* search (GPTBot, OAI-SearchBot, ChatGPT-User, ClaudeBot, Claude-SearchBot,
+  PerplexityBot, Google-Extended, CCBot, Applebot-Extended). The studio's values
+  decision is to be in the corpus. The private tier is unchanged (`Disallow: /`
+  already covers every crawler). Backward-compatible addition — existing sites
+  gain the stanzas on upgrade. UA list is the 2026-07 snapshot; refresh on a future
+  release when the landscape churns. MINOR. Canary on kdc.
+
 ## [0.4.2] — 2026-07-05
 
 ### Fixed
