@@ -8,6 +8,20 @@ All notable changes to the studio theme. The format follows
 
 ### Added
 
+- **Optional right rail for the signup block** (platform EPIC3-03). A site that
+  sets `studio.signup.rail: true` gets a two-column layout from `lg` up (≥64rem):
+  the content keeps its place on the left (prose still capped at the reading
+  measure) and the signup block fills the column prose otherwise leaves empty,
+  instead of that space sitting idle. The rail is sticky; on narrow screens it
+  stacks below the content. A page opts out with `full_width: true` (e.g. a
+  full-bleed map). New `--layout-rail` token (19rem); placement tag via
+  `studio.signup.rail_placement`. Backward-compatible and opt-in — sites without
+  the flag are unchanged. MINOR. Canary via the theme demo, then kdc.
+
+## [0.6.0] — 2026-07-06
+
+### Added
+
 - **`signup.html` — config-gated email-capture block** (platform EPIC3-03, #98).
   Renders only when the consuming site sets a `studio.signup` config hash with
   `enabled` + a provider `action` (gate mirrors the analytics beacon: off by

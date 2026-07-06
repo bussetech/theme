@@ -7,9 +7,29 @@
   <a class="skip-link" href="#main">Skip to content</a>
   {% include header.html %}
   <main id="main">
+    {%- comment -%}
+      Optional right rail (studio.signup.rail). When a site opts in, wide screens
+      get a two-column layout: content on the left (unchanged, capped at the
+      reading measure), the signup block in the rail on the right — using the
+      space prose leaves empty. A page can opt out with `full_width: true`
+      (e.g. a full-bleed map). On narrow screens the rail stacks below content.
+    {%- endcomment -%}
+    {%- assign _rail = false -%}
+    {%- if site.studio.signup.rail and site.studio.signup.enabled and page.full_width != true -%}{% assign _rail = true %}{% endif -%}
+    {%- if _rail -%}
+    <div class="container container--rail">
+      <div class="container__main">
+        {{ content }}
+      </div>
+      <aside class="rail" aria-label="Subscribe for updates">
+        {% include signup.html placement=site.studio.signup.rail_placement %}
+      </aside>
+    </div>
+    {%- else -%}
     <div class="container">
       {{ content }}
     </div>
+    {%- endif -%}
   </main>
   {% include footer.html %}
   <script src="{{ '/assets/js/nav.js' | relative_url }}" defer></script>

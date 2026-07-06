@@ -100,6 +100,23 @@ main { flex: 1 0 auto; padding-block: var(--space-7); }
 .prose { max-width: var(--layout-measure); }
 .stack > * + * { margin-block-start: var(--space-4); }
 
+// ── Optional content + right rail (opt-in: studio.signup.rail) ─────────────
+// Mobile-first: a single column — the rail's signup simply stacks below the
+// content. From lg up, the content keeps its place on the left (prose still
+// caps at the reading measure) and the signup fills the space prose leaves on
+// the right, instead of that column sitting empty.
+@media (min-width: 64rem) {
+  .container--rail {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) var(--layout-rail);
+    gap: var(--space-6);
+    align-items: start;
+  }
+  .container__main { min-width: 0; } // let wide children (tables, code) shrink
+  .rail { position: sticky; top: var(--space-6); }
+  .rail .signup { margin-block: 0; } // flush to the top of the content
+}
+
 // ── Page header block ─────────────────────────────────────────────────────
 .page-header { margin-bottom: var(--space-6); }
 .page-header__title { margin-block: var(--space-2) 0; }

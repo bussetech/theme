@@ -86,6 +86,7 @@
   --layout-measure: 68ch;
   --layout-container: 72rem;
   --layout-container-wide: 84rem;
+  --layout-rail: 19rem;
 
   /* breakpoint */
   --bp-sm: 40rem;
@@ -166,6 +167,7 @@ $radius-pill: var(--radius-pill);
 $layout-measure: var(--layout-measure);
 $layout-container: var(--layout-container);
 $layout-container-wide: var(--layout-container-wide);
+$layout-rail: var(--layout-rail);
 $bp-sm: var(--bp-sm);
 $bp-md: var(--bp-md);
 $bp-lg: var(--bp-lg);

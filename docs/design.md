@@ -130,6 +130,7 @@ canonical URLs), and the analytics beacon — the beacon renders only when
 | `studio.footer_note` | free-text footer line |
 | `studio.theme_color` | mobile browser-chrome colour hint |
 | `studio.default_image` | default OG/Twitter image |
+| `studio.signup` | email-capture block (`enabled`, `action`, copy, `privacy_note`); `rail: true` puts it in a right rail on all pages (`rail_placement` tags captures; a page opts out with `full_width: true`) |
 
 ## 6. Visibility & the leak rule
 
