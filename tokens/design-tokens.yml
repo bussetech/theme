@@ -134,6 +134,7 @@ layout:
   measure: 68ch             # max text line length (readability)
   container: 72rem          # max content width
   container-wide: 84rem
+  rail: 19rem               # width of the optional right rail (studio.signup.rail)
 breakpoint:
   sm: 40rem    # 640
   md: 48rem    # 768

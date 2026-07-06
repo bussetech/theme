@@ -37,6 +37,8 @@ studio:
     hidden:
       embed: "1"
     placement_field: "metadata__placement"
+    rail: true                       # demo shows the optional right rail
+    rail_placement: "demo-rail"
   # Legal identity a consuming site injects from platform.yml branding.legal
   # (the factory fills studio.legal.copyright). Shown here so the demo renders
   # the footer copyright line — the visual-regression surface for the release.
