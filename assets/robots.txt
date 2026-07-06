@@ -8,5 +8,27 @@ Disallow: /
 User-agent: *
 Allow: /
 
+# AI crawlers — the public tier opts into the corpus, training AND search
+# (platform ADR-0032). Named explicitly so the intent is chosen, not accidental.
+# UA strings churn; this list is the 2026-07 snapshot, refreshed on theme release.
+User-agent: GPTBot
+Allow: /
+User-agent: OAI-SearchBot
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+User-agent: ClaudeBot
+Allow: /
+User-agent: Claude-SearchBot
+Allow: /
+User-agent: PerplexityBot
+Allow: /
+User-agent: Google-Extended
+Allow: /
+User-agent: CCBot
+Allow: /
+User-agent: Applebot-Extended
+Allow: /
+
 Sitemap: {{ '/sitemap.xml' | absolute_url }}
 {%- endif -%}
