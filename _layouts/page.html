@@ -7,6 +7,9 @@ layout: default
     {%- if page.eyebrow %}<p class="eyebrow">{{ page.eyebrow }}</p>{% endif -%}
     <h1 class="page-header__title">{{ page.title }}</h1>
     {%- if page.description %}<p class="page-header__desc">{{ page.description }}</p>{% endif -%}
+    {%- comment -%} Visible freshness signal (agentic discoverability §4):
+        a page that declares `updated:` front matter wears the date. {%- endcomment -%}
+    {%- if page.updated %}<p class="page-header__updated">Updated <time datetime="{{ page.updated | date: '%Y-%m-%d' }}">{{ page.updated | date: "%Y-%m-%d" }}</time></p>{% endif -%}
   </header>
   {{ content }}
 </article>

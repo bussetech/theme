@@ -1,0 +1,25 @@
+{%- comment -%}
+  Hero masthead — a page's one-sentence premise, front-loaded (the claim an
+  assistant could cite verbatim comes first; platform
+  docs/gtm/agentic-discoverability.md §5). Params:
+    eyebrow           small wayfinding label above the title (optional)
+    title             the premise sentence (required)
+    lede              one supporting line, measure-capped (optional)
+    primary_label / primary_url      green action (optional)
+    secondary_label / secondary_url  ghost action (optional)
+{%- endcomment -%}
+<section class="hero">
+  {%- if include.eyebrow %}<p class="eyebrow">{{ include.eyebrow }}</p>{% endif -%}
+  <h1 class="hero__title">{{ include.title }}</h1>
+  {%- if include.lede %}<p class="hero__lede">{{ include.lede }}</p>{% endif -%}
+  {%- if include.primary_url or include.secondary_url %}
+  <p class="hero__actions">
+    {%- if include.primary_url -%}
+    <a class="btn" href="{{ include.primary_url }}">{{ include.primary_label }}</a>
+    {%- endif %}
+    {%- if include.secondary_url %}
+    <a class="btn btn--ghost" href="{{ include.secondary_url }}">{{ include.secondary_label }}</a>
+    {%- endif %}
+  </p>
+  {%- endif %}
+</section>

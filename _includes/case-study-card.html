@@ -1,0 +1,32 @@
+{%- comment -%}
+  Case-study card — one published (or premise-stage) study on the work rail.
+  Params: a `study` object with:
+    title        the study's title (required)
+    url          where it is published; omit for premise-stage entries
+    blurb        one- or two-sentence summary
+    repo         the project's repo/codename (shown as meta)
+    status       case-study lifecycle: premise | skeleton | draft | gated | published
+    claim_state  autonomy-claim sizing: scoped | earned (rendered honestly as
+                 meta — the studio shows its own claim discipline)
+  No repo URLs are ever emitted here (ADR-0006); `url` is a published site.
+{%- endcomment -%}
+{%- assign s = include.study -%}
+<article class="card case-study-card">
+  <h3 class="card__title">
+    {%- if s.url -%}<a href="{{ s.url }}">{{ s.title }}</a>{%- else -%}{{ s.title }}{%- endif -%}
+  </h3>
+  {%- if s.blurb %}<p class="card__desc">{{ s.blurb }}</p>{% endif -%}
+  <dl class="card__meta">
+    {%- if s.repo -%}
+    <div><dt class="visually-hidden">Project</dt><dd class="case-study-card__repo">{{ s.repo }}</dd></div>
+    {%- endif -%}
+    {%- if s.status -%}
+    {%- assign _chip = "warn" -%}
+    {%- if s.status == "published" %}{% assign _chip = "ok" %}{% endif -%}
+    <div><dt class="visually-hidden">Status</dt><dd>{% include status-chip.html status=_chip label=s.status %}</dd></div>
+    {%- endif -%}
+    {%- if s.claim_state -%}
+    <div><dt>Claims</dt><dd>{{ s.claim_state }}</dd></div>
+    {%- endif -%}
+  </dl>
+</article>

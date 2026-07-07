@@ -1,0 +1,5 @@
+# Demo data for the FAQ component (components page only — not shipped).
+- q: "What is a gnome?"
+  a: "A gnome is a single agent that handles one task end to end, defined by a manifest contract — named, level-tagged, and journaled."
+- q: "Who approves a gnome's work?"
+  a: "No gnome merges its own output. Every change lands as a pull request that a human reviews and merges — merge is the approval."

@@ -18,8 +18,11 @@
 {%- if include.size == "lg" -%}{%- assign _cls = "logotype logotype--lg" -%}{%- endif -%}
 {%- if include.size == "sm" -%}{%- assign _cls = "logotype logotype--sm" -%}{%- endif -%}
 {%- capture _inner -%}<span class="logotype__org">{{ _org }}</span><span class="logotype__pipe" aria-hidden="true">|</span><span class="logotype__descriptor">{{ _desc }}</span>{%- endcapture -%}
+{%- comment -%} The accessible name must contain the visible text: the pipe is
+    aria-hidden, so the label is the pipe-less form (label-content-name match). {%- endcomment -%}
+{%- capture _label -%}{{ _org }} {{ _desc }}{%- endcapture -%}
 {%- if include.link -%}
-<a class="{{ _cls }}" href="{{ include.link | relative_url }}" aria-label="{{ _lt }}">{{ _inner }}</a>
+<a class="{{ _cls }}" href="{{ include.link | relative_url }}" aria-label="{{ _label }}">{{ _inner }}</a>
 {%- else -%}
-<{{ include.tag | default: "span" }} class="{{ _cls }}" aria-label="{{ _lt }}">{{ _inner }}</{{ include.tag | default: "span" }}>
+<{{ include.tag | default: "span" }} class="{{ _cls }}" aria-label="{{ _label }}">{{ _inner }}</{{ include.tag | default: "span" }}>
 {%- endif -%}

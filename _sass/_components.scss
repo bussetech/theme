@@ -159,6 +159,93 @@
 }
 .signup > :last-child { margin-bottom: 0; }
 
+// ── Hero masthead — the page's premise sentence, front-loaded ─────────────
+.hero {
+  padding-block: var(--space-7) var(--space-6);
+}
+.hero__title {
+  font-size: var(--type-scale-3xl);
+  line-height: var(--type-leading-tight);
+  letter-spacing: var(--type-tracking-tight);
+  margin: 0;
+  max-width: 24ch;
+}
+@media (min-width: 64rem) {
+  .hero__title { font-size: var(--type-scale-4xl); }
+}
+.hero__lede {
+  font-size: var(--type-scale-md);
+  color: var(--color-ink-soft);
+  max-width: var(--layout-measure);
+  margin-block: var(--space-4) 0;
+}
+.hero__actions {
+  display: flex; flex-wrap: wrap; gap: var(--space-3);
+  margin-block: var(--space-5) 0;
+}
+
+// ── Stat tile — one live figure + its receipt link ────────────────────────
+// The number is data, not decoration: it wears ink (proportional figures at
+// display size — tabular-nums is for columns), the label stays sentence-case,
+// and the receipt link is blue (information), never a status color.
+.stat-tile {
+  border: var(--border-hairline) solid var(--gray-300);
+  border-radius: var(--radius-md);
+  background: var(--color-ground);
+  padding: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  height: 100%;
+}
+.stat-tile__value {
+  font-size: var(--type-scale-2xl);
+  font-weight: var(--type-weight-bold);
+  line-height: var(--type-leading-tight);
+  letter-spacing: var(--type-tracking-tight);
+  color: var(--color-ink);
+  margin: 0;
+}
+.stat-tile__label { font-size: var(--type-scale-sm); color: var(--color-ink); margin: 0; }
+.stat-tile__detail { font-size: var(--type-scale-xs); color: var(--color-ink-soft); margin: 0; }
+.stat-tile__link { font-size: var(--type-scale-xs); margin: var(--space-2) 0 0; margin-top: auto; }
+.stat-tile__link a { color: var(--color-info-base); }
+
+// ── TL;DR — the page's checkable summary (blue = information) ─────────────
+.tldr {
+  border-inline-start: var(--border-accent) solid var(--color-info-base);
+  background: var(--color-info-surface);
+  color: var(--color-ink);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  margin-block: var(--space-5);
+}
+.tldr__label {
+  font-size: var(--type-scale-xs);
+  font-weight: var(--type-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--type-tracking-wide);
+  color: var(--color-info-base);
+  margin: 0 0 var(--space-1);
+}
+.tldr__text { margin: 0; max-width: var(--layout-measure); }
+
+// ── FAQ — visible Q&A backing the FAQPage JSON-LD ─────────────────────────
+.faq__item {
+  padding-block: var(--space-4);
+  border-bottom: var(--border-hairline) solid var(--gray-300);
+  max-width: var(--layout-measure);
+}
+.faq__q { font-size: var(--type-scale-md); margin: 0 0 var(--space-2); }
+.faq__a { margin: 0; color: var(--color-ink-soft); }
+
+// Page-header freshness line (`page.updated` front matter).
+.page-header__updated {
+  font-size: var(--type-scale-xs);
+  color: var(--color-ink-soft);
+  margin: var(--space-2) 0 0;
+}
+
 // ── Card base ─────────────────────────────────────────────────────────────
 .card {
   border: var(--border-hairline) solid var(--gray-300);
