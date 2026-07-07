@@ -1,0 +1,19 @@
+{%- comment -%}
+  Stat tile — one live figure and the receipt it traces to. The value is data;
+  the receipt link is what keeps it an honest claim (every quantitative claim
+  resolves from state and cites its source). Params:
+    value       the figure, already formatted (required)
+    label       sentence-case, what the figure is (required)
+    detail      one small-print qualifier — as-of date, "estimate", scope (optional)
+    href        the receipt: where a visitor verifies the figure (optional)
+    link_label  receipt link text (default "see the receipt")
+  Text wears text tokens only; no status color rides the number.
+{%- endcomment -%}
+<article class="stat-tile">
+  <p class="stat-tile__value">{{ include.value }}</p>
+  <p class="stat-tile__label">{{ include.label }}</p>
+  {%- if include.detail %}<p class="stat-tile__detail">{{ include.detail }}</p>{% endif -%}
+  {%- if include.href %}
+  <p class="stat-tile__link"><a href="{{ include.href }}">{{ include.link_label | default: "see the receipt" }}</a></p>
+  {%- endif %}
+</article>

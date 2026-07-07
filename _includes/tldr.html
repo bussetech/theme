@@ -1,0 +1,12 @@
+{%- comment -%}
+  TL;DR block — the page's checkable summary, front-loaded for human skimmers
+  and AI assistants alike (platform docs/gtm/agentic-discoverability.md §5:
+  make the true summary the easy one). Params:
+    text    the summary — a few complete, citable sentences (required)
+  Renders as an info region (blue = information); place it directly under the
+  page header, before the body.
+{%- endcomment -%}
+<section class="tldr" role="note" aria-label="Summary">
+  <p class="tldr__label">TL;DR</p>
+  <p class="tldr__text">{{ include.text }}</p>
+</section>

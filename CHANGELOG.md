@@ -8,6 +8,42 @@ All notable changes to the studio theme. The format follows
 
 ### Added
 
+- **`hero.html` — masthead premise block** (platform EPIC3-07, www v2). A page's
+  one-sentence premise, front-loaded per the agentic-discoverability editorial
+  law (the citable claim comes first), with an optional lede and action pair.
+  Type only — no new colors; the title rides the existing `3xl`/`4xl` scale.
+  MINOR. Canary via the theme demo, then www.
+- **`stat-tile.html` — one live figure + its receipt link** (EPIC3-07). The
+  portal's proof tiles: value in ink (proportional figures at display size —
+  never a status color on a number), sentence-case label, small-print
+  qualifier, and a blue receipt link so every quantitative claim carries where
+  to verify it. MINOR.
+- **`tldr.html` — checkable page summary** (EPIC3-07, agentic discoverability
+  §5). An information region (blue accent, existing tokens) that front-loads a
+  page's claims in complete sentences an assistant could cite verbatim. MINOR.
+- **`faq.html` — visible Q&A + schema.org `FAQPage` JSON-LD from one data
+  source** (EPIC3-07, agentic discoverability §3). The visible questions and
+  the structured data render from the same `items` array (page front matter or
+  a data file), so markup can't drift from content. MINOR.
+- **`case-study-card.html` — the work rail's unit** (EPIC3-07). Renders a
+  case-study entry with its lifecycle status chip and an honest `claims:
+  scoped|earned` meta line; premise-stage entries carry no link. Never emits a
+  repo URL (ADR-0006). MINOR.
+- **Visible updated-dates**: a page that declares `updated:` front matter wears
+  "Updated YYYY-MM-DD" under its header (`page-header__updated`), the visible
+  freshness signal the agentic-discoverability basis doc calls for. Opt-in,
+  backward-compatible. MINOR.
+
+### Fixed
+
+- **Changelog hygiene:** the right-rail entry below was shipped in v0.7.0 but
+  left under *Unreleased* when the tag was cut; it now sits in its release
+  section. No code change.
+
+## [0.7.0] — 2026-07-06
+
+### Added
+
 - **Optional right rail for the signup block** (platform EPIC3-03). A site that
   sets `studio.signup.rail: true` gets a two-column layout from `lg` up (≥64rem):
   the content keeps its place on the left (prose still capped at the reading

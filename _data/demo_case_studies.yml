@@ -1,0 +1,11 @@
+# Demo data for the case-study card (components page only — not shipped).
+- repo: sample-project
+  title: "How the sample dataset builds and maintains itself"
+  url: "#"
+  status: published
+  claim_state: scoped
+  blurb: "One person and an auditable agent workforce founded, populated, and now maintain an open dataset — every run receipted, every change a PR."
+- repo: sample-premise
+  title: "A premise-stage study — no link until it publishes"
+  status: premise
+  blurb: "A one-paragraph reason this will be worth telling. No facts yet; the card carries no link until the study clears its gates."

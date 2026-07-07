@@ -56,6 +56,46 @@ Filled variant (white label on the status fill — both pass AA):
   {% include status-chip.html status="error" label="down" filled=true %}
 </p>
 
+## Hero masthead
+
+The page's premise sentence, front-loaded (the claim comes first — for
+skimmers and assistants alike). Actions are optional.
+
+{% include hero.html eyebrow="Demo" title="One sentence that makes the page's whole argument." lede="One supporting line, capped at the reading measure, in de-emphasized ink." primary_label="Primary action" primary_url="#" secondary_label="Secondary" secondary_url="#" %}
+
+## Stat tile
+
+One live figure plus the receipt it traces to. The value wears ink (never a
+status color); the receipt link is blue (information).
+
+<div class="grid grid--3">
+  {% include stat-tile.html value="1,204" label="records in the demo dataset" detail="fetched at build · 2026-07-06" href="#" link_label="browse the dataset" %}
+  {% include stat-tile.html value="$7.74" label="studio model spend this month" detail="estimate from list prices, not an invoice" href="#" link_label="see the cost notes" %}
+  {% include stat-tile.html value="passing" label="cross-repo chain test" detail="derived from open alert issues at build" href="#" %}
+</div>
+
+## TL;DR
+
+The page's checkable summary — place it under the header, before the body.
+
+{% include tldr.html text="This block front-loads the page's claims in a few complete sentences an assistant could cite verbatim. It renders as an information region and never carries a claim the page itself doesn't back." %}
+
+## FAQ (with FAQPage JSON-LD)
+
+Visible Q&A and the schema.org markup render from the same data, so they
+can't drift apart.
+
+{% include faq.html items=site.data.demo_faq heading="Demo questions" %}
+
+## Case-study card
+
+The work rail's unit. Status is the case-study lifecycle; the claims line
+shows the studio's claim discipline (scoped vs earned) in public.
+
+<div class="grid grid--3">
+  {% for s in site.data.demo_case_studies %}{% include case-study-card.html study=s %}{% endfor %}
+</div>
+
 ## Info callout — blue
 
 Blue means *information*.
