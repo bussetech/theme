@@ -6,6 +6,8 @@ All notable changes to the studio theme. The format follows
 
 ## [Unreleased]
 
+## [0.10.0] — 2026-07-07
+
 ### Added
 
 - **`sortable-table.html` — generic sortable data table** (www gnome
