@@ -2,7 +2,10 @@
   Gnome card. Params: a `gnome` object with:
     display_name, var (the gn_* variable name), level ("platform"|"project"),
     status ("ok"|"warn"|"error"), status_label, home (home repo), url,
-    purpose (optional one-liner), deployments (optional array of repo names).
+    purpose (optional one-liner), deployments (optional array of repo names),
+    igotchi (optional personality overlay, display-only — platform ADR-0036):
+      { glyph, stage, score_display, traits (array of strings), bio }.
+    Text/CSS glyphs only — no images (brand guidance pending).
 {%- endcomment -%}
 {%- assign g = include.gnome -%}
 <article class="card gnome-card">
@@ -10,6 +13,21 @@
     {%- if g.url -%}<a href="{{ g.url }}">{{ g.display_name }}</a>{%- else -%}{{ g.display_name }}{%- endif -%}
   </h3>
   <p class="gnome-card__var">{{ g.var }}</p>
+  {%- if g.igotchi -%}
+  <div class="igotchi">
+    <p class="igotchi__stage">
+      <span class="igotchi__glyph" aria-hidden="true">{{ g.igotchi.glyph }}</span>
+      <span>{{ g.igotchi.stage }}</span>
+      {%- if g.igotchi.score_display %} <span class="igotchi__score">· {{ g.igotchi.score_display }} tokens</span>{% endif -%}
+    </p>
+    {%- if g.igotchi.traits and g.igotchi.traits.size > 0 -%}
+    <ul class="igotchi__traits">
+      {%- for t in g.igotchi.traits %}<li class="igotchi__trait">{{ t }}</li>{% endfor -%}
+    </ul>
+    {%- endif -%}
+    {%- if g.igotchi.bio %}<p class="igotchi__bio">{{ g.igotchi.bio }}</p>{% endif -%}
+  </div>
+  {%- endif -%}
   {%- if g.purpose %}<p class="card__desc">{{ g.purpose }}</p>{% endif -%}
   <dl class="card__meta">
     <div><dt class="visually-hidden">Level</dt><dd class="gnome-card__level">{{ g.level }}</dd></div>
