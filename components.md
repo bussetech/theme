@@ -4,6 +4,7 @@ permalink: /components/
 eyebrow: Reference
 title: Components
 description: Every component the theme ships, rendered from its include. This page is the visual regression surface for the studio's screenshot checks (prompt 06).
+sortable_tables: true
 ---
 
 Each block below is produced by the same include a project site calls. Color
@@ -129,6 +130,18 @@ Without the block the card renders exactly as before.
 
 <div class="grid grid--3">
   {% for g in site.data.demo_gnomes %}{% include gnome-card.html gnome=g %}{% endfor %}
+</div>
+
+## Sortable table
+
+A leaderboard-style data table: Liquid renders the default sort (here:
+tokens, descending), the optional page-level `sortable_tables: true` flag
+ships a small enhancer that makes every header a live sort control
+(aria-sort carries the state). Numeric columns are right-aligned mono with
+tabular figures. `compact: true` fits the right rail; the wrapper scrolls
+rather than breaking the page on narrow screens.
+<div style="max-width: 24rem">
+{% include sortable-table.html columns=site.data.demo_leaderboard_columns rows=site.data.demo_leaderboard default_sort="tokens" compact=true caption="Demo gnome leaderboard" %}
 </div>
 
 ## Feed-item card

@@ -1,0 +1,9 @@
+{%- comment -%}
+  table-scripts — the sortable-table enhancer, emitted before </body> only
+  when a page sets `sortable_tables: true` (the map-scripts pattern).
+  Progressive enhancement: without it, tables keep their rendered default
+  sort and headers are inert.
+{%- endcomment -%}
+{%- if page.sortable_tables -%}
+<script src="{{ '/assets/js/sortable-table.js' | relative_url }}" defer></script>
+{%- endif -%}

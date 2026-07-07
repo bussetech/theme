@@ -1,0 +1,12 @@
+# Column spec for the components-page sortable-table demo.
+- key: gnome
+  label: Gnome
+- key: stage
+  label: St
+  title: Stage
+- key: tokens
+  label: Tokens
+  numeric: true
+- key: runs
+  label: Runs
+  numeric: true

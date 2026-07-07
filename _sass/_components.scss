@@ -341,6 +341,46 @@
   font-style: italic;
 }
 
+// ── Sortable table (leaderboards, data tables) ────────────────────────────
+// Progressive enhancement: Liquid renders the default sort; sortable-table.js
+// (page opt-in `sortable_tables: true`) makes headers live. Numerics are
+// mono + right-aligned; the sort state rides aria-sort (accessibility IS the
+// styling hook). Neutral ink/gray — a leaderboard ranks, it doesn't alert.
+.sortable-table__wrap { overflow-x: auto; }
+.sortable-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--type-scale-sm);
+}
+.sortable-table th,
+.sortable-table td {
+  padding: var(--space-1) var(--space-2);
+  border-bottom: var(--border-hairline) solid var(--gray-300);
+  text-align: left;
+}
+.sortable-table th { color: var(--color-ink-soft); }
+.sortable-table .is-numeric {
+  text-align: right;
+  font-family: var(--type-family-mono);
+  font-variant-numeric: tabular-nums;
+}
+.sortable-table__sort {
+  all: unset;
+  cursor: pointer;
+  font-size: var(--type-scale-xs);
+  font-weight: var(--type-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--type-tracking-wide);
+}
+.sortable-table__sort:focus-visible { outline: 2px solid var(--color-action-base); outline-offset: 2px; }
+.sortable-table th[aria-sort] .sortable-table__sort { color: var(--color-ink); }
+.sortable-table th[aria-sort="descending"] .sortable-table__sort::after { content: " ▾"; }
+.sortable-table th[aria-sort="ascending"] .sortable-table__sort::after { content: " ▴"; }
+.sortable-table--compact {
+  font-size: var(--type-scale-xs);
+  th, td { padding: var(--space-1); }
+}
+
 // ── Feed-item card ────────────────────────────────────────────────────────
 .feed-item {
   padding-block: var(--space-4);
