@@ -1,0 +1,63 @@
+{%- comment -%}
+  Sortable table. Params:
+    columns      — array of column objects:
+                     key     (field name in each row)
+                     label   (header text)
+                     numeric (optional: right-align + mono + numeric sort)
+                     title   (optional: header title attribute, e.g. to
+                              expand an abbreviated label)
+    rows         — array of row objects. Cell display value = row[key].
+                   Optional row fields:
+                     <key>_sort — sort value when display is formatted
+                                  (e.g. tokens "71k" displays, 71382 sorts)
+                     _url       — links the FIRST column's cell
+    default_sort — key pre-sorted at render (progressive enhancement: the
+                   table arrives sorted; JS only re-sorts)
+    default_desc — true to pre-sort descending (default true)
+    caption      — accessible table caption (visually hidden)
+    compact      — true for rail-width contexts (xs type, tight cells)
+
+  Sorting needs `sortable_tables: true` in the page front matter to emit
+  assets/js/sortable-table.js (the map-scripts pattern). Without JS the
+  default sort stands and headers render as plain text.
+{%- endcomment -%}
+{%- assign _cols = include.columns -%}
+{%- assign _rows = include.rows -%}
+{%- assign _desc = true -%}
+{%- if include.default_desc == false -%}{%- assign _desc = false -%}{%- endif -%}
+{%- if include.default_sort -%}
+  {%- assign _sort_key = include.default_sort -%}
+  {%- assign _sort_field = _sort_key | append: '_sort' -%}
+  {%- assign _probe = _rows | first -%}
+  {%- if _probe[_sort_field] -%}{%- assign _sort_by = _sort_field -%}{%- else -%}{%- assign _sort_by = _sort_key -%}{%- endif -%}
+  {%- assign _rows = _rows | sort: _sort_by -%}
+  {%- if _desc -%}{%- assign _rows = _rows | reverse -%}{%- endif -%}
+{%- endif -%}
+<div class="sortable-table__wrap">
+  <table class="sortable-table{% if include.compact %} sortable-table--compact{% endif %}" data-sortable>
+    {%- if include.caption %}<caption class="visually-hidden">{{ include.caption }}</caption>{% endif -%}
+    <thead>
+      <tr>
+        {%- for col in _cols %}
+        <th scope="col"{% if col.numeric %} class="is-numeric"{% endif %}{% if col.title %} title="{{ col.title }}"{% endif %}
+            data-key="{{ col.key }}"{% if col.numeric %} data-numeric{% endif %}
+            {% if include.default_sort == col.key %}aria-sort="{% if _desc %}descending{% else %}ascending{% endif %}"{% endif %}>
+          <button type="button" class="sortable-table__sort">{{ col.label }}</button>
+        </th>
+        {%- endfor %}
+      </tr>
+    </thead>
+    <tbody>
+      {%- for row in _rows %}
+      <tr>
+        {%- for col in _cols %}
+        {%- assign _sf = col.key | append: '_sort' -%}
+        <td{% if col.numeric %} class="is-numeric"{% endif %} data-value="{{ row[_sf] | default: row[col.key] }}">
+          {%- if forloop.first and row._url -%}<a href="{{ row._url }}">{{ row[col.key] }}</a>{%- else -%}{{ row[col.key] }}{%- endif -%}
+        </td>
+        {%- endfor %}
+      </tr>
+      {%- endfor %}
+    </tbody>
+  </table>
+</div>

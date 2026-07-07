@@ -16,7 +16,23 @@
     {%- endcomment -%}
     {%- assign _rail = false -%}
     {%- if site.studio.signup.rail and site.studio.signup.enabled and page.full_width != true -%}{% assign _rail = true %}{% endif -%}
-    {%- if _rail -%}
+    {%- if page.rail -%}
+    {%- comment -%}
+      Page-supplied rail: front matter `rail: <include file>` (resolved from
+      the consuming site's _includes first, then the theme's) fills the rail
+      with page-specific content — e.g. a leaderboard. Takes precedence over
+      the site-wide signup rail; a page wanting both includes signup.html
+      inside its own rail include. Label it with `rail_label`.
+    {%- endcomment -%}
+    <div class="container container--rail">
+      <div class="container__main">
+        {{ content }}
+      </div>
+      <aside class="rail" aria-label="{{ page.rail_label | default: 'Related' }}">
+        {% include {{ page.rail }} %}
+      </aside>
+    </div>
+    {%- elsif _rail -%}
     <div class="container container--rail">
       <div class="container__main">
         {{ content }}
@@ -34,5 +50,6 @@
   {% include footer.html %}
   <script src="{{ '/assets/js/nav.js' | relative_url }}" defer></script>
   {% include map-scripts.html %}
+  {% include table-scripts.html %}
 </body>
 </html>

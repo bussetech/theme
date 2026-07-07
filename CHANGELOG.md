@@ -6,6 +6,21 @@ All notable changes to the studio theme. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- **`sortable-table.html` — generic sortable data table** (www gnome
+  leaderboard; reusable for any ranked/tabular data). Liquid renders the
+  default sort so the no-JS baseline is complete; page front matter
+  `sortable_tables: true` ships `assets/js/sortable-table.js` (map-scripts
+  pattern), which makes headers live sort controls with `aria-sort`
+  carrying state. Numeric columns: right-aligned, mono, tabular figures.
+  `compact` variant for the rail. Neutral ink/gray — ranking, not alerting.
+  MINOR.
+- **Page-supplied rail** — front matter `rail: <include file>` (+
+  `rail_label`) fills the right rail with page-specific content, resolved
+  from the consuming site's `_includes` first. Takes precedence over the
+  site-wide signup rail; layout and breakpoints unchanged. MINOR.
+
 ## [0.9.0] — 2026-07-07
 
 ### Added

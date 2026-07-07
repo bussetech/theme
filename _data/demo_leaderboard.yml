@@ -1,0 +1,18 @@
+# Demo data for the components page — not shipped to consumers. Row shape for
+# sortable-table.html: display values per column key, optional <key>_sort
+# numeric overrides, optional _url on the first column.
+- gnome: gn_dc_scout
+  stage: "●"
+  tokens: 1.2M
+  tokens_sort: 1200000
+  runs: 120
+- gnome: gn_dns_steward
+  stage: "◑"
+  tokens: 178k
+  tokens_sort: 178000
+  runs: 48
+- gnome: gn_repo_docs
+  stage: "○"
+  tokens: "0"
+  tokens_sort: 0
+  runs: 9
