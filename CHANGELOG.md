@@ -6,6 +6,8 @@ All notable changes to the studio theme. The format follows
 
 ## [Unreleased]
 
+## [0.8.0] — 2026-07-06
+
 ### Added
 
 - **`hero.html` — masthead premise block** (platform EPIC3-07, www v2). A page's
