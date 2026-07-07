@@ -120,7 +120,12 @@ Shows a status chip and — when the source repo isn't public — a
 
 ## Gnome card
 
-Display name, `gn_*` variable name, level, status, and home repo.
+Display name, `gn_*` variable name, level, status, and home repo. An
+optional `igotchi` block (platform ADR-0036) adds the display-only
+personality overlay: stage glyph + score, trait chips, and a two-sentence
+bio — all derived from real run history on the consuming site, all neutral
+ink/gray (personality is character, not wayfinding), text/CSS glyphs only.
+Without the block the card renders exactly as before.
 
 <div class="grid grid--3">
   {% for g in site.data.demo_gnomes %}{% include gnome-card.html gnome=g %}{% endfor %}

@@ -6,6 +6,16 @@ All notable changes to the studio theme. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- **Gnome card — optional `igotchi` personality overlay** (platform EPIC3-09,
+  ADR-0036). Stage glyph + lifetime-token score, trait chips, and a
+  two-sentence bio, all display-only and derived from real run history by
+  the consuming site's data plane. Text/CSS glyphs only (no images until
+  brand guidance); neutral ink/gray throughout — personality is character,
+  not wayfinding, so it takes no colour job. Cards without the block render
+  byte-identically to v0.8.0. MINOR. Canary via the theme demo, then www.
+
 ## [0.8.0] — 2026-07-06
 
 ### Added
