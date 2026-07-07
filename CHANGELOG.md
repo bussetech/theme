@@ -6,6 +6,8 @@ All notable changes to the studio theme. The format follows
 
 ## [Unreleased]
 
+## [0.9.0] — 2026-07-07
+
 ### Added
 
 - **Gnome card — optional `igotchi` personality overlay** (platform EPIC3-09,
