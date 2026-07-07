@@ -36,6 +36,11 @@ All notable changes to the studio theme. The format follows
 
 ### Fixed
 
+- **Logotype accessible name matched its visible text** (EPIC3-07 launch
+  checklist): the `aria-label` carried the pipe character while the pipe is
+  `aria-hidden` in the visible mark, tripping WCAG 2.5.3 label-in-name
+  (Lighthouse `label-content-name-mismatch`). The label is now the pipe-less
+  form. PATCH.
 - **Changelog hygiene:** the right-rail entry below was shipped in v0.7.0 but
   left under *Unreleased* when the tag was cut; it now sits in its release
   section. No code change.
