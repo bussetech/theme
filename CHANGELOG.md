@@ -6,6 +6,17 @@ All notable changes to the studio theme. The format follows
 
 ## [Unreleased]
 
+### Added
+
+- **Compact rail signup** — `.rail .signup` tightens the capture block when
+  it renders in the right rail (smaller heading, xs supporting text,
+  stacked full-width input/button). Same markup and config, same neutral
+  region, green still only on the submit. Sites already using the signup
+  rail (kdc) get the compact treatment on their next pin bump. MINOR.
+- **`signup_rail: false` page opt-out** — a page carrying its own inline
+  capture block can suppress the site-wide signup rail, keeping one
+  capture surface per page. MINOR.
+
 ## [0.10.0] — 2026-07-07
 
 ### Added

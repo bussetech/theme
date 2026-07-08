@@ -15,7 +15,10 @@
       (e.g. a full-bleed map). On narrow screens the rail stacks below content.
     {%- endcomment -%}
     {%- assign _rail = false -%}
-    {%- if site.studio.signup.rail and site.studio.signup.enabled and page.full_width != true -%}{% assign _rail = true %}{% endif -%}
+    {%- comment -%} A page carrying its own inline capture block can opt out
+        of the site-wide signup rail with `signup_rail: false` — one capture
+        surface per page, never two. {%- endcomment -%}
+    {%- if site.studio.signup.rail and site.studio.signup.enabled and page.full_width != true and page.signup_rail != false -%}{% assign _rail = true %}{% endif -%}
     {%- if page.rail -%}
     {%- comment -%}
       Page-supplied rail: front matter `rail: <include file>` (resolved from

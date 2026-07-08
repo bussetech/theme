@@ -159,6 +159,26 @@
 }
 .signup > :last-child { margin-bottom: 0; }
 
+// Compact treatment inside the right rail: the rail already frames the
+// block, so everything tightens — smaller heading, xs supporting text,
+// full-width stacked input and button. Same markup, same neutral region,
+// green still only on the submit.
+.rail .signup {
+  padding: var(--space-3);
+}
+.rail .signup__heading { font-size: var(--type-scale-base); }
+.rail .signup__value {
+  font-size: var(--type-scale-xs);
+  margin-bottom: var(--space-3);
+}
+.rail .signup__input {
+  flex-basis: 100%;
+  font-size: var(--type-scale-sm);
+  padding: var(--space-2) var(--space-3);
+}
+.rail .signup .btn { width: 100%; }
+.rail .signup__privacy { font-size: var(--type-scale-xs); }
+
 // ── Hero masthead — the page's premise sentence, front-loaded ─────────────
 .hero {
   padding-block: var(--space-7) var(--space-6);
