@@ -41,6 +41,15 @@ Tags are immutable — never move or delete a published tag. A mistake in a
 release is fixed by a new release, so no site that pinned the bad tag is
 surprised by a moving target.
 
+## The release train (one-dispatch releases)
+
+The stamp→tag→canary→fanout procedure below can run as ONE sysop dispatch:
+`theme-release-train` in the control repo (platform ADR-0037,
+`docs/theme-release-train.md` there). STEERCO-authorized for theme
+FEATURE releases only; the feature PR's review/merge stays human. The
+manual procedure remains valid — the train is a faster spelling of the
+same receipts.
+
 ## Canary rollout
 
 Never bump every site at once — that would defeat the point of pinning.
