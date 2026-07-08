@@ -1,0 +1,49 @@
+# release-train-caller — starts the theme release train (platform ADR-0037)
+# from where the pattern actually starts: the sysop MERGING a theme feature
+# PR labeled `release-train:<minor|patch|major>`. The merge is the single
+# human act; this thin caller App-dispatches the train in the control repo
+# (same idiom as kdc-signals-chain / the portal ping). Unlabeled merges do
+# nothing — releases stay an explicit, per-PR opt-in.
+# class: H (Human-gated) — fires only on a sysop-merged, release-labeled PR; no cron, no schedule.
+name: release-train-caller
+
+on:
+  pull_request:
+    types: [closed]
+
+permissions:
+  contents: read
+
+jobs:
+  dispatch:
+    if: >
+      github.event.pull_request.merged == true &&
+      (contains(github.event.pull_request.labels.*.name, 'release-train:minor') ||
+       contains(github.event.pull_request.labels.*.name, 'release-train:patch') ||
+       contains(github.event.pull_request.labels.*.name, 'release-train:major'))
+    runs-on: ubuntu-latest
+    steps:
+      - name: Mint gnome App token
+        id: app-token
+        uses: actions/create-github-app-token@bcd2ba49218906704ab6c1aa796996da409d3eb1 # v3.2.0
+        with:
+          app-id: ${{ secrets.GNOME_APP_ID }}
+          private-key: ${{ secrets.GNOME_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+
+      - name: Dispatch the train
+        env:
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
+          LABELS: ${{ join(github.event.pull_request.labels.*.name, ' ') }}
+        run: |
+          bump=minor
+          case " $LABELS " in
+            *" release-train:major "*) bump=major ;;
+            *" release-train:patch "*) bump=patch ;;
+          esac
+          gh api "repos/${{ github.repository_owner }}/platform/dispatches" \
+            -f event_type=theme-release-train \
+            -f "client_payload[bump]=$bump" \
+            -F "client_payload[pr]=${{ github.event.pull_request.number }}" \
+            -f "client_payload[merged_by]=${{ github.event.pull_request.merged_by.login }}"
+          echo "train dispatched: bump=$bump, from PR #${{ github.event.pull_request.number }} merged by ${{ github.event.pull_request.merged_by.login }}"
