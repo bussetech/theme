@@ -6,6 +6,8 @@ All notable changes to the studio theme. The format follows
 
 ## [Unreleased]
 
+## [0.11.0] — 2026-07-08
+
 ### Added
 
 - **Compact rail signup** — `.rail .signup` tightens the capture block when
